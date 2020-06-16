@@ -14,7 +14,8 @@ class SaleOrder(models.Model):
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
-    approver_id = fields.Many2one('res.users', 'Sale Order Approver', readonly=False, copy=False, track_visibility='onchange', default=lambda self: self.env.user.id)
+    approver_id = fields.Many2one('res.users', 'Sale Order Approver', readonly=False, copy=False, required=True, track_visibility='onchange',
+        domain="['&',['sale_order_can_approve', '=', 'yes'],['sale_order_amount_limit', '>', amount_total]]")
     discount_notes = fields.Float('Discount Note')
     next_discount_amount = fields.Float('Next Discount Amount')
     
