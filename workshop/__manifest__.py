@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'fleet', 'stock', 'project', 'industry_fsm'],
+    'depends': ['base', 'fleet', 'stock', 'product', 'project', 'industry_fsm'],
 
     # always loaded
     'data': [
