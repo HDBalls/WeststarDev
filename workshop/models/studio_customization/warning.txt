@@ -1,0 +1,8 @@
+The following relational data haven't been exported because they either refer
+to a model that Studio doesn't export, or have no XML id:
+
+Record: studio_customization.007_create_ticket_in_215f5af6-e6de-4102-9b56-f6e2d870bd1e
+Model: ir.actions.server
+Field: fields_lines
+Type: one2many
+Value: ir.server.object.lines(893, 894, 895, 896, 897, 898) ('ir.server.object.lines,893', 'ir.server.object.lines,894', 'ir.server.object.lines,895', 'ir.server.object.lines,896', 'ir.server.object.lines,897', 'ir.server.object.lines,898')

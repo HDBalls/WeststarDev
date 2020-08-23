@@ -1,0 +1,879 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.odoo_studio_product__c1724d56-db95-42c1-9c06-f7650411f7ec" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='barcode']" position="after">
+          <field name="x_studio_market_code" string="Market Code"/>
+          <field name="x_studio_vehicle_type" string="Vehicle Type"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">Odoo Studio: product.template.product.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__4f188cac-21b2-428e-b365-157a67f6b65a" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="False"/>
+    <field name="arch" type="xml">
+      <data>
+        <!--<xpath expr="//form[1]/sheet[1]/group[1]/group[2]" position="replace"/>-->
+        <xpath expr="//field[@name='gross_increase_value']" position="replace"/>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/span[1]" position="replace">
+          <field name="id"/>
+          <field name="x_studio_asset_tag"/>
+          <field name="x_studio_asset_used_place"/>
+          <field name="x_studio_asset_custodian" string="Asset Custodian"/>
+          <xpath expr="//field[@name='acquisition_date']" position="move"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]" position="attributes">
+          <attribute name="string">Asset Value</attribute>
+        </xpath>
+        <xpath expr="//field[@name='original_value']" position="attributes">
+          <attribute name="attrs"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[1]" position="inside">
+          <xpath expr="//field[@name='method_number']" position="move"/>
+          <xpath expr="//field[@name='method_period']" position="move"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]" position="inside">
+          <xpath expr="//field[@name='prorata']" position="move"/>
+          <xpath expr="//field[@name='prorata_date']" position="move"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]" position="inside">
+          <xpath expr="//field[@name='method']" position="move"/>
+          <xpath expr="//field[@name='method_progress_factor']" position="move"/>
+          <xpath expr="//field[@name='first_depreciation_date']" position="move"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[3]" position="inside">
+          <xpath expr="//field[@name='company_id']" position="move"/>
+          <xpath expr="//field[@name='account_asset_id']" position="move"/>
+          <xpath expr="//field[@name='account_depreciation_id']" position="move"/>
+          <xpath expr="//field[@name='account_depreciation_expense_id']" position="move"/>
+          <xpath expr="//field[@name='journal_id']" position="move"/>
+          <xpath expr="//field[@name='account_analytic_id']" position="move"/>
+          <xpath expr="//field[@name='analytic_tag_ids']" position="move"/>
+        </xpath>
+        <xpath expr="//page[@name='depreciation_board']" position="inside">
+          <xpath expr="//field[@name='depreciation_move_ids']" position="move"/>
+        </xpath>
+        <xpath expr="//page[@name='related_items']" position="inside">
+          <xpath expr="//field[@name='original_move_line_ids']" position="move"/>
+        </xpath>
+        <xpath expr="//form[1]/div[1]" position="inside">
+          <xpath expr="//field[@name='message_follower_ids']" position="move"/>
+          <xpath expr="//field[@name='activity_ids']" position="move"/>
+          <xpath expr="//field[@name='message_ids']" position="move"/>
+        </xpath>
+        <xpath expr="//field[@name='acquisition_date']" position="attributes">
+          <attribute name="attrs"/>
+        </xpath>
+        <xpath expr="//field[@name='account_analytic_id']" position="attributes">
+          <attribute name="string">Cost  Center</attribute>
+        </xpath>
+        <xpath expr="//field[@name='analytic_tag_ids']" position="attributes">
+          <attribute name="attrs">{}</attribute>
+          <attribute name="groups"/>
+          <attribute name="invisible">1</attribute>
+          <attribute name="widget"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.asset</field>
+    <field name="name">Odoo Studio: account.asset.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__866b2073-5b5d-420d-a30d-437952e8e970" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="False"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='book_value']" position="replace">
+          <field name="original_value"/>
+        </xpath>
+        <xpath expr="//field[@name='first_depreciation_date']" position="replace">
+          <field name="x_studio_asset_tag"/>
+          <field name="method"/>
+          <field name="method_number"/>
+          <field name="method_period"/>
+          <field name="acquisition_date"/>
+        </xpath>
+        <xpath expr="//tree[1]/field[@name='name']" position="before">
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='currency_id']" position="after">
+          <field name="journal_id"/>
+        </xpath>
+        <xpath expr="//field[@name='company_id']" position="after">
+          <field name="account_asset_id"/>
+          <field name="account_depreciation_id"/>
+          <field name="account_depreciation_expense_id"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account_asset.view_account_asset_purchase_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.asset</field>
+    <field name="name">Odoo Studio: account.asset.purchase.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__dd735790-7873-4e06-a2df-b02802426f72" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='invoice_line_ids']/tree[1]/field[@name='analytic_account_id']" position="attributes">
+          <attribute name="string">Cost Center</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='invoice_line_ids']/tree[1]/field[@name='analytic_tag_ids']" position="attributes">
+          <attribute name="string">Product Class</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account.view_move_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.move</field>
+    <field name="name">Odoo Studio: account.move.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_purchase_3a234831-f7c6-4ce0-9c4d-3fcd80ced961" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='order_line']" position="attributes">
+          <attribute name="string">Product</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='order_line']/tree[1]/field[@name='analytic_tag_ids']" position="attributes">
+          <attribute name="string">Product Class</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='order_line']/form[1]/group[1]/group[1]/field[@name='product_id']" position="attributes">
+          <attribute name="string">Items</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='order_line']/form[1]/group[1]/group[2]/field[@name='account_analytic_id']" position="attributes">
+          <attribute name="string">Analytic Account</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+          <page name="studio_page_cewfb" string="New Page">
+            <group name="studio_group_cewfb">
+              <group name="studio_group_cewfb_left"/>
+              <group name="studio_group_cewfb_right"/>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">purchase.order</field>
+    <field name="name">Odoo Studio: purchase.order.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_sale_ord_ff524271-dd3b-4b27-86fa-dee7c9ce226e" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/form[1]/group[1]/group[2]/field[@name='analytic_tag_ids']" position="replace"/>
+        <xpath expr="//field[@name='analytic_tag_ids']" position="attributes">
+          <attribute name="attrs">{}</attribute>
+          <attribute name="invisible">1</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">sale.order</field>
+    <field name="name">Odoo Studio: sale.order.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__76122f5d-5607-47e8-a2ba-b94ecc818076" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='name']" position="attributes">
+          <attribute name="string">Product Class</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="analytic.account_analytic_tag_tree_view"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.analytic.tag</field>
+    <field name="name">Odoo Studio: account.analytic.tag.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_res_part_5d1a5622-caf9-4eb8-99ac-f34b7c23542e" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//button[@name='307']" position="attributes">
+          <attribute name="icon">fa-money</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">res.partner</field>
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__840faa38-f79f-458a-8ff9-03512ca12834" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='statement_line_ids']/field[@name='line_ids']/tree[1]/field[@name='name']" position="attributes">
+          <attribute name="string">Label</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account.view_bank_statement_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.bank.statement</field>
+    <field name="name">Odoo Studio: account.bank.statement.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_form_view_fo_69a95f90-0c59-46d8-8121-b973b93f4e21" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet string="Vehicle Service">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1"/>
+            </h1>
+          </div>
+          <group name="studio_group_892196">
+            <group name="studio_group_892196_left"/>
+            <group name="studio_group_892196_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_service</field>
+    <field name="name">Default form view for x_vehicle_service</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__1e136212-303e-42e3-aab3-60213a95b3a2" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_name']" position="attributes">
+          <attribute name="string">Repair Reference Number</attribute>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_892196_left']" position="inside">
+          <field name="x_studio_case_name" string="Case Name" help="Vehicle Service Description"/>
+          <field name="x_studio_vin_" string="VIN #" help="Vin Number of Vehicle"/>
+          <field name="x_studio_license_plate_1" string="License Plate"/>
+          <field name="x_studio_model" string="Model"/>
+          <field name="x_studio_last_odometer"/>
+          <field name="x_studio_odometer_unit" string="Odometer Unit"/>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_892196_right']" position="inside">
+          <field name="x_studio_customer_name_1" string="Customer Name"/>
+          <field name="x_studio_mobile" string="Mobile"/>
+          <field name="x_studio_email" string="Email"/>
+          <field name="x_studio_address" string="Address"/>
+          <field name="x_studio_base_sequence" string="Base Sequence" attrs="{}" invisible="1"/>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_892196']" position="after">
+          <group name="studio_group_4KC8D">
+            <group name="studio_group_4KC8D_left">
+              <field name="x_studio_booking_date_time" string="Booking Date &amp; Time"/>
+              <field name="x_studio_job_type" string="Job Type"/>
+              <field name="x_studio_nature_of_service" string="Nature Of Service"/>
+            </group>
+            <group name="studio_group_4KC8D_right"/>
+          </group>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_form_view_fo_69a95f90-0c59-46d8-8121-b973b93f4e21"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">x_vehicle_service</field>
+    <field name="name">Odoo Studio: Default form view for x_vehicle_service customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_tree_view_fo_f2608f9d-495f-4b6f-80ed-535b4db1f294" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <tree string="Vehicle Service">
+        <field name="x_name" modifiers="{}"/>
+      </tree>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_service</field>
+    <field name="name">Default tree view for x_vehicle_service</field>
+    <field name="priority">16</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__61eed139-397b-482b-b796-ae37bbf8b870" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_name']" position="before">
+          <field name="x_studio_vin_"/>
+          <field name="x_studio_model"/>
+          <field name="x_studio_mobile"/>
+          <field name="x_studio_service_center" string="Service Center"/>
+          <field name="x_studio_field_VF5OS"/>
+        </xpath>
+        <xpath expr="//field[@name='x_name']" position="attributes">
+          <attribute name="string">Repair Reference</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_tree_view_fo_f2608f9d-495f-4b6f-80ed-535b4db1f294"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">x_vehicle_service</field>
+    <field name="name">Odoo Studio: Default tree view for x_vehicle_service customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.default_kanban_view__3cac261f-977e-45e8-a562-e8d2adf0366a" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <kanban string="Vehicle Service">
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+              <div class="o_kanban_card_content">
+                <field name="x_name" modifiers="{}"/>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_service</field>
+    <field name="name">Default kanban view for x_vehicle_service</field>
+    <field name="priority">16</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__a319c642-7b4e-4a38-9eef-a86b4735e808" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]/div[1]" position="replace">
+          <div class="oe_kanban_bottom_left" name="studio_div_157a2e">
+            <field display="full" name="x_studio_case_name"/>
+            <field display="full" name="x_studio_vin_"/>
+            <field display="full" name="x_studio_model"/>
+          </div>
+        </xpath>
+        <xpath expr="//kanban[1]" position="attributes">
+          <attribute name="default_group_by">x_studio_field_VF5OS</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_kanban_view__3cac261f-977e-45e8-a562-e8d2adf0366a"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">x_vehicle_service</field>
+    <field name="name">Odoo Studio: Default kanban view for x_vehicle_service customization</field>
+    <field name="priority">99</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="studio_customization.default_form_view_fo_62acce33-d473-4a74-afc5-1bc021b42576" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet string="Vehicle Registration">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1"/>
+            </h1>
+          </div>
+          <group name="studio_group_89b9db">
+            <group name="studio_group_89b9db_left"/>
+            <group name="studio_group_89b9db_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_registration</field>
+    <field name="name">Default form view for x_vehicle_registration</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_form_view_fo_46c27ee3-e602-4355-9a0e-8cf1f45f4f74" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet string="Reporting">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1"/>
+            </h1>
+          </div>
+          <group name="studio_group_4dfddd">
+            <group name="studio_group_4dfddd_left"/>
+            <group name="studio_group_4dfddd_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_reporting</field>
+    <field name="name">Default form view for x_reporting</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_form_view_fo_d491c291-9dde-49b0-aadf-71d7790388d1" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet string="Configuration">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1"/>
+            </h1>
+          </div>
+          <group name="studio_group_21e25c">
+            <group name="studio_group_21e25c_left"/>
+            <group name="studio_group_21e25c_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_configuration</field>
+    <field name="name">Default form view for x_configuration</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_form_view_fo_b7531d92-90ba-4e95-8f89-f5d3b711c121" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet string="Vehicle Diagnosis">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1"/>
+            </h1>
+          </div>
+          <group name="studio_group_02fca7">
+            <group name="studio_group_02fca7_left"/>
+            <group name="studio_group_02fca7_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_diagnosis</field>
+    <field name="name">Default form view for x_vehicle_diagnosis</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_form_view_fo_3bb09ed1-0510-4f8b-a3d1-d6abd0867039" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet string="Job Types">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1"/>
+            </h1>
+          </div>
+          <group name="studio_group_2f9776">
+            <group name="studio_group_2f9776_left"/>
+            <group name="studio_group_2f9776_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_job_types</field>
+    <field name="name">Default form view for x_job_types</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_tree_view_fo_f4872187-d31b-4545-a052-27311bcae217" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <tree string="Job Types">
+        <field name="x_name" modifiers="{}"/>
+      </tree>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_job_types</field>
+    <field name="name">Default tree view for x_job_types</field>
+    <field name="priority">16</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.default_tree_view_fo_69af4443-0c96-46a5-aa49-db81a12b08f9" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <tree string="Vehicle Registration">
+        <field name="x_name" modifiers="{}"/>
+      </tree>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_registration</field>
+    <field name="name">Default tree view for x_vehicle_registration</field>
+    <field name="priority">16</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__fa1c3154-4518-4883-86a3-dba25b0eba74" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_name']" position="attributes">
+          <attribute name="attrs">{}</attribute>
+          <attribute name="force_save">True</attribute>
+          <attribute name="required"/>
+          <attribute name="readonly">1</attribute>
+          <attribute name="string">Vehicle Reference Name</attribute>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_89b9db_left']" position="attributes">
+          <attribute name="string">Vehicle</attribute>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_89b9db_left']" position="inside">
+          <field name="x_studio_logo" string="Logo" options="{&quot;size&quot;:[0,90]}" widget="image" attrs="{}" invisible="1"/>
+          <field name="x_studio_model" string="Model" help="Model of the vehicle" placeholder="e.g. Model GLS" domain="[&quot;|&quot;,[&quot;brand_id&quot;,&quot;=&quot;,&quot;Mercedes-Benz&quot;],[&quot;brand_id&quot;,&quot;=&quot;,&quot;Maybach-Benz&quot;]]"/>
+          <field name="x_studio_license_plate" string="License Plate" help="License plate number of the vehicle (i = plate number for a car)" placeholder="e.g. FST 326 AA"/>
+          <field name="x_studio_chassis_number" string="Chassis Number" help="Unique number written on the vehicle motor (VIN/SN number)"/>
+          <field name="x_studio_last_odometer" string="Last Odometer" help="Odometer measure of the vehicle at the moment of this log"/>
+          <field name="x_studio_odometer_unit" string="Odometer Unit" help="Unit of the odometer " attrs="{&quot;required&quot;: [[&quot;x_studio_last_odometer&quot;,&quot;!=&quot;,False]]}"/>
+          <field name="x_studio_field_rDZ6g" widget="many2many_tags"/>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_89b9db_right']" position="attributes">
+          <attribute name="string">Customer</attribute>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_89b9db_right']" position="inside">
+          <field name="x_studio_customer_name" string="Customer Name" help="Select or Create Customer Data"/>
+          <field name="x_studio_email" string="Email"/>
+          <field name="x_studio_phone_number" string="Phone Number"/>
+          <field name="x_studio_address" string="Address"/>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_89b9db']" position="after">
+          <group name="studio_group_pvvtj">
+            <group name="studio_group_pvvtj_left" string="Engine">
+              <field name="x_studio_transmission" string="Transmission" help="Transmission Used by the vehicle"/>
+              <field name="x_studio_fuel_type" string="Fuel Type" help="Fuel Used by the vehicle"/>
+              <field name="x_studio_co2_emissions_gkm" string="CO2 Emissions (g/km)" help="CO2 emissions of the vehicle"/>
+              <field name="x_studio_power_kw" string="Power (kW)" help="Power in kW of the vehicle"/>
+            </group>
+            <group name="studio_group_pvvtj_right" string="Model">
+              <field name="x_studio_seats_number" string="Seats Number" help="Number of seats of the vehicle"/>
+              <field name="x_studio_doors_number" string="Doors Number" help="Number of doors of the vehicle"/>
+              <field name="x_studio_color" string="Color" help="Color of the vehicle"/>
+              <field name="x_studio_model_year" string="Model Year" help="Year of the model"/>
+            </group>
+          </group>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_form_view_fo_62acce33-d473-4a74-afc5-1bc021b42576"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">x_vehicle_registration</field>
+    <field name="name">Odoo Studio: Default form view for x_vehicle_registration customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__d29851e7-1fb9-4469-8cfd-48068418cfa4" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='acquisition_date']" position="after">
+          <field name="x_studio_asset_tag"/>
+          <field name="x_studio_asset_custodian"/>
+          <field name="x_studio_asset_used_place"/>
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='account_analytic_id']" position="attributes">
+          <attribute name="string">Cost Center</attribute>
+        </xpath>
+        <xpath expr="//field[@name='analytic_tag_ids']" position="attributes">
+          <attribute name="attrs">{}</attribute>
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+          <page name="studio_page_ph5aG" string="Other Info">
+            <group name="studio_group_ph5aG">
+              <group name="studio_group_ph5aG_left">
+                <field name="x_studio_asset_custodian_1" string="Asset Custodian"/>
+                <field name="x_studio_account_tag" string="Account Tag"/>
+              </group>
+              <group name="studio_group_ph5aG_right"/>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.asset</field>
+    <field name="name">Odoo Studio: account.asset.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__2fb1292e-6d9a-40c1-b2c8-935570db06c2" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <field name="original_value"/>
+          <field name="acquisition_date"/>
+          <field name="x_studio_asset_tag"/>
+          <field name="x_studio_asset_custodian"/>
+          <field name="x_studio_asset_used_place"/>
+          <field name="method"/>
+          <field name="method_period"/>
+          <field name="method_number"/>
+          <field name="journal_id"/>
+        </xpath>
+        <xpath expr="//field[@name='company_id']" position="after">
+          <field name="account_analytic_id" string="Cost Center"/>
+          <field name="account_asset_id"/>
+          <field name="account_depreciation_expense_id"/>
+          <field name="account_depreciation_id"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account_asset.view_account_asset_purchase_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.asset</field>
+    <field name="name">Odoo Studio: account.asset.purchase.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.default_tree_view_fo_41c310c6-77c5-4741-bb35-55ea75faedee" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <tree string="Reporting">
+        <field name="x_name" modifiers="{}"/>
+      </tree>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_reporting</field>
+    <field name="name">Default tree view for x_reporting</field>
+    <field name="priority">16</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__05d60dd5-332f-4ca2-9e0c-05b54b620846" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_name']" position="after">
+          <field name="x_studio_customer_name"/>
+          <field name="x_studio_model"/>
+          <field name="x_studio_chassis_number"/>
+          <field name="x_studio_last_odometer"/>
+          <field name="x_studio_fuel_type"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_tree_view_fo_69af4443-0c96-46a5-aa49-db81a12b08f9"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">x_vehicle_registration</field>
+    <field name="name">Odoo Studio: Default tree view for x_vehicle_registration customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_stock_pi_27aef902-cf09-44be-9f61-a3d211da1237" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//button[@name='action_view_stock_valuation_layers']" position="attributes">
+          <attribute name="icon">fa-money</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">stock.picking</field>
+    <field name="name">Odoo Studio: stock.picking.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.default_kanban_view__809444e4-2a59-4d84-b8b8-ff9219cc5d7a" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <kanban string="Vehicle Registration">
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+              <div class="o_kanban_card_content">
+                <field name="x_name" modifiers="{}"/>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">x_vehicle_registration</field>
+    <field name="name">Default kanban view for x_vehicle_registration</field>
+    <field name="priority">16</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__d6dd1fb3-b9ba-4b17-b672-8eca406a8371" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_name']" position="replace">
+          <field display="full" name="x_studio_model"/>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]" position="before">
+          <field name="x_studio_customer_name"/>
+          <field name="x_color"/>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]" position="attributes">
+          <attribute name="color">x_color</attribute>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]/div[not(@name)][1]" position="before">
+          <div class="o_dropdown_kanban dropdown" name="kanban_dropdown">
+            <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu" role="button">
+              <span class="fa fa-bars fa-lg"/>
+            </a>
+            <div class="dropdown-menu" role="menu" name="studio_div_c6e0d9">
+              <t t-if="widget.editable">
+                <a data-type="set_cover" href="#" data-field="x_studio_cover_image_id" class="dropdown-item oe_kanban_action oe_kanban_action_a">
+                    Set Cover Image
+                </a>
+                <a data-type="set_cover" href="#" data-field="x_studio_cover_image_id" class="dropdown-item oe_kanban_action oe_kanban_action_a">
+                    Set Cover Image
+                </a>
+                <a type="edit" class="dropdown-item">Edit</a>
+              </t>
+              <t t-if="widget.deletable">
+                <a type="delete" class="dropdown-item">Delete</a>
+              </t>
+              <ul class="oe_kanban_colorpicker" data-field="x_color"/>
+            </div>
+          </div>
+          <field name="x_studio_field_rDZ6g"/>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]/div[not(@name)][1]" position="after">
+          <div class="oe_kanban_bottom_right" name="studio_div_6e83eb">
+            <img t-att-src="kanban_image('res.partner', 'image_128', record.x_studio_customer_name.raw_value)" t-att-title="record.x_studio_customer_name.value" class="oe_kanban_avatar o_image_24_cover float-right"/>
+          </div>
+          <field t-if="record.x_studio_cover_image_id.value" name="x_studio_cover_image_id" widget="attachment_image"/>
+          <field t-if="record.x_studio_cover_image_id.value" name="x_studio_cover_image_id" widget="attachment_image"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_kanban_view__809444e4-2a59-4d84-b8b8-ff9219cc5d7a"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">x_vehicle_registration</field>
+    <field name="name">Odoo Studio: Default kanban view for x_vehicle_registration customization</field>
+    <field name="priority">99</field>
+    <field name="type">kanban</field>
+  </record>
+</odoo>
