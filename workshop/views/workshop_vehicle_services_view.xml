@@ -4,7 +4,7 @@
         <field name="name">workshop.vehicle.log.services.form</field>
         <field name="model">workshop.vehicle.log.services</field>
         <field name="arch" type="xml">
-            <form string="Services Logs">
+            <form string="Diagnosis">
                 <header>
                     <button name="%(workshop.workshop_work_order_action)d"
                             string="Create Work Order"
@@ -12,6 +12,7 @@
                             class="oe_highlight"
                             attrs="{'invisible' : [('task_id', '!=', False)]}"/>
 <!--                        <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>-->
+                    <field name="state"  widget="statusbar" statusbar_visible="pending,in_progress,done"/>
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_button_box">
@@ -30,7 +31,7 @@
                         </h1>
                     </div>
                     <group col="2">
-                        <group string="Services Details">
+                        <group string="Diagnosis Details">
                             <field name="vehicle_id"/>
                             <field name="cost_subtype_id" string="Nature Of Job" domain="['|',('category','=','service'),('category','=','both')]" required="1"/>
 <!--                            <field name="nature_of_job"/>-->
@@ -148,7 +149,7 @@
     </record>
 
     <record id='workshop_vehicle_log_services_action' model='ir.actions.act_window'>
-        <field name="name">Vehicles Services Logs</field>
+        <field name="name">Vehicles Diagnosis</field>
         <field name="res_model">workshop.vehicle.log.services</field>
         <field name="view_mode">tree,kanban,form,graph</field>
         <field name="help" type="html">

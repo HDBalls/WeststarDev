@@ -374,6 +374,12 @@ class FleetVehicleLogServices(models.Model):
     date_in = fields.Date(help='The date the vehicle was brought into the workshop', store=True)
     date_out = fields.Date(help='The date the vehicle left the workshop', store=True)
     nature_of_job = fields.Selection([], store=True)
+    state = fields.Selection([
+        ('pending', 'Pending'),
+        ('in_progress', 'Work In Progress'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled'),
+    ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='pending')
     fuel_log = fields.Selection([
         ('empty', 'Empty'),
         ('half', 'Half Full'),
@@ -385,6 +391,15 @@ class FleetVehicleLogServices(models.Model):
     cost_amount = fields.Float(related='task_id.material_line_total_price', string='Amount', store=True, readonly=True)
     notes = fields.Text()
     cost_id = fields.Many2one('workshop.vehicle.cost', 'Cost', required=True, ondelete='cascade')
+
+    def action_in_progress(self):
+        return self.write({'state': 'in_progress'})
+
+    def action_done(self):
+        return self.write({'state': 'done'})
+
+    def action_cancel(self):
+        return self.write({'state': 'cancel'})
 
     @api.onchange('task_id.material_line_total_price')
     def _onchange_cost_amount(self):
