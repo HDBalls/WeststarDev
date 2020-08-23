@@ -111,7 +111,7 @@
                             icon="fa-wrench"
                             context="{'xml_id':'workshop_vehicle_log_services_action'}"
                             help="show the services logs for this vehicle" >
-                            <field name="service_count" widget="statinfo" string="Services"/>
+                            <field name="service_count" widget="statinfo" string="Diagnosis"/>
                         </button>
 <!--                        <button name="return_action_to_open"-->
 <!--                            type="object"-->

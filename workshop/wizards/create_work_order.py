@@ -77,6 +77,7 @@ class WorkOrder(models.TransientModel):
         # link service to task
         self.service_id.write({
             'task_id': task.id,
+            'state': 'in_progress'
             # 'partner_id': sale_order.partner_id.id,
             # 'email_from': sale_order.partner_id.email,
         })
