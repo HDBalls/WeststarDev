@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1045c5db-f018-4fda-92e8-c1ae5e8c2488" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/workshop/models/vehicle_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/vehicle_services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/views/workshop_vehicle_services_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/workshop_vehicle_services_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/views/workshop_vehicle_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/workshop_vehicle_views.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/wizards/create_work_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/wizards/create_work_order.py" afterDir="false" />
-    </list>
+    <list default="true" id="1045c5db-f018-4fda-92e8-c1ae5e8c2488" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
