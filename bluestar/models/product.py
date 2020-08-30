@@ -42,10 +42,10 @@ class SalesFactor(models.Model):
 class Product(models.Model):
     _inherit = 'product.template'
 
-    market_code = fields.Char()
+    # market_code = fields.Char()
     # factor_id = fields.Many2one('market.market_code', 'Market Code', tracking=True, help='Get the products market code', copy=False)
+    sales_factor_id = fields.Many2one('product.template.sales.factor', string='Sales Factor', related='market_code_id.factor_id', tracking=True)
     market_code_id = fields.Many2one('product.template.market.code', 'Market Code', tracking=True)
-    sales_factor_id = fields.Many2one('product.template.sales.factor', 'Sales Factor', related="market_code_id.factor_id", tracking=True)
     # list_price: catalog price, user defined
     list_price = fields.Float(
         'Sales Price', default=1.0,
