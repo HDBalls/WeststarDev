@@ -18,6 +18,19 @@ from odoo import models, fields, api
 #             record.value2 = float(record.value) / 100
 
 class MarketCode(models.Model):
+    _name = 'product.template.market.code'
+    description = 'Market Code'
+
+    _sql_constraints = [('unique_name',
+
+                         'UNIQUE (name)',
+
+                         'Market code already exists'), ]
+    name = fields.Char()
+    factor_id = fields.Many2one('product.template.sales.factor', 'Sales Factor')
+
+    
+class SalesFactor(models.Model):
     _name = 'product.template.sales.factor'
     _description = 'Pricing Factor'
 
@@ -31,7 +44,8 @@ class Product(models.Model):
 
     market_code = fields.Char()
     # factor_id = fields.Many2one('market.market_code', 'Market Code', tracking=True, help='Get the products market code', copy=False)
-    sales_factor = fields.Many2one('product.template.sales.factor', 'Sales Factor', tracking=True)
+    market_code_id = fields.Many2one('product.template.market.code', 'Market Code', tracking=True)
+    sales_factor_id = fields.Many2one('product.template.sales.factor', 'Sales Factor', related="market_code_id.factor_id", tracking=True)
     # list_price: catalog price, user defined
     list_price = fields.Float(
         'Sales Price', default=1.0,
@@ -42,7 +56,7 @@ class Product(models.Model):
     # @api.onchange('sales_factor', 'standard_price')
     def _cal_list_price(self):
         for record in self:
-            record.list_price = record.standard_price * record.sales_factor.factor
+            record.list_price = record.standard_price * record.sales_factor_id.factor
             # record.update({
             #     'list_price': list_price
             # })
