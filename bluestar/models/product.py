@@ -45,6 +45,7 @@ class Product(models.Model):
     # market_code = fields.Char()
     # factor_id = fields.Many2one('market.market_code', 'Market Code', tracking=True, help='Get the products market code', copy=False)
     sales_factor_id = fields.Many2one('product.template.sales.factor', string='Sales Factor', tracking=True)
+    
     market_code_id = fields.Many2one('product.template.market.code', 'Market Code', tracking=True)
     # list_price: catalog price, user defined
     list_price = fields.Float(
