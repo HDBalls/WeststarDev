@@ -19,7 +19,7 @@ from odoo import models, fields, api
 
 class MarketCode(models.Model):
     _name = 'product.template.market.code'
-    description = 'Market Code'
+    _description = 'Market Code'
 
     _sql_constraints = [('unique_name',
 
