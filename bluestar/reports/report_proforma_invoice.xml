@@ -74,7 +74,7 @@
                             <tr>
                                 <th>Ref:</th>
                                 <td>
-                                    <span t-field="doc.client_order_ref"/>
+                                    <span t-field="doc.ref_number"/>
                                 </td>
                             </tr>
                         </tbody>
@@ -241,14 +241,14 @@
             </div>
             <div class="row mb-5">
                 <div class="ml-5">
-                    <b>NAIRA ACCOUNT DETAILS </b>
-                    <p><strong>ECOBANK ACCOUNT </strong></p>
-                    <p><strong>Account Name. Weststar Associates Limited</strong></p>
-                    <p><strong>Account No.: 5882000073</strong></p>
-                    <p><strong>Sort Code: 050152416</strong></p>
+                    <h2>NAIRA ACCOUNT DETAILS </h2>
+                    <span><strong>ECOBANK ACCOUNT </strong></span><br/>
+                    <span><strong>Account Name. Weststar Associates Limited</strong></span><br/>
+                    <span><strong>Account No.: 5882000073</strong></span><br/>
+                    <span><strong>Sort Code: 050152416</strong></span>
                 </div>
             </div>
-            <div class="row ml-5">
+            <div class="row mx-5">
                 <div class="col-6">
                     <span>U.Urban</span><br/>
                     <span><strong>Part's Manager</strong></span>
