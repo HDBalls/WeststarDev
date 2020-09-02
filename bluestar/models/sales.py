@@ -8,6 +8,8 @@ class Sales(models.Model):
 
     ref_number = fields.Char('Reference #')
 
+    amount_undiscounted = fields.Monetary('Amount Before Discount', compute='_compute_amount_undiscounted', digits=0)
+
 #     name = fields.Char()
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
