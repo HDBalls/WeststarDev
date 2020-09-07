@@ -10,7 +10,7 @@
             </xpath>
             <xpath expr="//button[@name='action_view_invoices']" position="after">
                 <button class="oe_stat_button" icon="fa-wrench" type="action" name="531">
-                  <field name="x_task_id__workshop_vehicle_log_services_count" string="Diagnosis" widget="statinfo"/>
+                  <field string="Diagnosis" widget="statinfo"/>
                 </button>
             </xpath>
             <xpath expr="//field[@name='project_id']" position="attributes">
