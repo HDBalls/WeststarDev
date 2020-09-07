@@ -20,10 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1045c5db-f018-4fda-92e8-c1ae5e8c2488" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/controllers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/controllers/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/controllers/controllers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/data/ir_sequence_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/data/ir_sequence_data.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/demo/demo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/demo/demo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/models/project.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/project.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workshop/models/vehicle_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/vehicle_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/models/vehicles.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/vehicles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/security/ir.model.access.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/security/workshop_security.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/security/workshop_security.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/views/fleet_vehicle_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/fleet_vehicle_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/views/project_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/project_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/views/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/templates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/views/vehicle_model_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/vehicle_model_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/views/views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/views.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workshop/views/workshop_vehicle_services_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/workshop_vehicle_services_view.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workshop/views/workshop_vehicle_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/views/workshop_vehicle_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/wizards/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/wizards/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workshop/wizards/create_work_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/wizards/create_work_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workshop/wizards/create_work_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/wizards/create_work_order.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
