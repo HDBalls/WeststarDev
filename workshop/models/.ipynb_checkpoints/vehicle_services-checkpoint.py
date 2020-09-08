@@ -373,7 +373,7 @@ class FleetVehicleLogServices(models.Model):
     task_id = fields.Many2one('project.task', 'Work Order')
     date_in = fields.Date(help='The date the vehicle was brought into the workshop', store=True)
     date_out = fields.Date(help='The date the vehicle left the workshop', store=True)
-    comp_prog = fields.Monetary(string='Computer Programming', store=True)
+    nature_of_job = fields.Selection([], store=True)
     state = fields.Selection([
         ('pending', 'Pending'),
         ('in_progress', 'Work In Progress'),
