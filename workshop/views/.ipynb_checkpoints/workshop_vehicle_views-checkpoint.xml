@@ -316,9 +316,9 @@
         </field>
     </record>
 
-    <menuitem name="Vehicles" parent="workshop_menu_root" id="workshop_vehicles" sequence="2" groups="workshop_group_user"/>
-    <menuitem action="workshop_vehicle_action" parent="workshop_vehicles" id="workshop_vehicle_menu" groups="workshop_group_manager"/>
-    <menuitem action="workshop_vehicle_model_action" parent="workshop_vehicles" id="workshop_vehicle_model_menu" sequence="11"/>
+<!--     <menuitem name="Vehicles" parent="workshop_menu_root" id="workshop_vehicles" sequence="10" groups="workshop_group_user"/> -->
+    <menuitem action="workshop_vehicle_action" parent="workshop_vehicles_services" id="workshop_vehicle_menu" groups="workshop_group_manager"/>
+    <menuitem action="workshop_vehicle_model_action" parent="workshop_configuration" id="workshop_vehicle_model_menu" sequence="11"/>
 
    <record id='workshop_vehicle_odometer_view_form' model='ir.ui.view'>
         <field name="name">workshop.vehicle.odometer.form</field>
@@ -417,7 +417,7 @@
         </field>
     </record>
 
-    <menuitem action="workshop_vehicle_odometer_action" parent="workshop_vehicles" id="workshop_vehicle_odometer_menu" groups="workshop_group_user"/>
+    <menuitem action="workshop_vehicle_odometer_action" parent="workshop_vehicles_services" id="workshop_vehicle_odometer_menu" groups="workshop_group_user"/>
 
 <!--    <record id='workshop_vehicle_service_types_view_tree' model='ir.ui.view'>-->
 <!--        <field name="name">workshop.service.type.tree</field>-->

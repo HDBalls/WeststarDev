@@ -22,6 +22,7 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
             self._create_parts_item(sale_order, self.task_id)
             self._create_lubricant_item(sale_order, self.task_id)
             self._create_expenses_item(sale_order, self.task_id)
+            self._create_extra_services(sale_order, self.task_id)
 
     def _create_parts_item(self, sale_order, task_id):
         ## Create section in sales Order line
@@ -86,4 +87,24 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
                 'product_uom_qty': lubricant_item.quantity,
             })
             lubricant_item.write({'external_id': sale_order_line.id})
+            
+    def _create_extra_services(self, sale_order, task_id):
+        Products = self.env['product.product']
+        comp_prog = Products.search([('type', '=', 'service'), ('default_code', '=', 'comp_prog')])
+        if comp_prog:
+            sale_order_line = self.env['sale.order.line'].create({
+                'order_id': sale_order.id,
+                'display_type': 'line_section',
+                'name': 'Extra',
+                'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
+                'task_id': task_id.id,
+            })
+            self.env['sale.order.line'].create({
+                'order_id': sale_order.id,
+                'product_id': comp_prog.id,
+                'price_unit': task_id.service_id.comp_prog,
+                'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
+                'task_id': task_id.id,
+                'product_uom_qty': 1,
+            })
 

@@ -20,8 +20,11 @@
                 <attribute name="options">{"no_open":true}</attribute>
             </xpath>
             <xpath expr="//field[@name='project_id']" position="after">
-                <field name="service_id"/>
+                <field name="service_id" string="Diagnosis"/>
 <!--                <field name="vehicle_id"/>-->
+            </xpath>
+            <xpath expr="//field[@name='service_id']" position="after">
+                <field name="vehicle_id"/>
             </xpath>
             <xpath expr="//field[@name='sale_line_id']" position="attributes">
                 <attribute name="attrs">{"invisible": ["|",["is_fsm","=",True],["partner_id","=",False]]}</attribute>
