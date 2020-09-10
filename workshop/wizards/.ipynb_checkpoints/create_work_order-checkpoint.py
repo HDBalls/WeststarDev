@@ -67,7 +67,7 @@ class WorkOrder(models.TransientModel):
             'partner_id': self.owner_id.id,
             'service_id': self.service_id,
             'user_id': self.user_id,
-            'project_id': self.env['project.project'].search([('name', '=', 'Work Order')]).id,
+            'project_id': self.service_id.project_id.id,
             # 'project_id': '10',
             'planned_hours': self.planned_hours,
             'date_deadline': self.deadline,

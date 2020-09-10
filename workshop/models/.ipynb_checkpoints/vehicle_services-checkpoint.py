@@ -7,7 +7,8 @@ from odoo.exceptions import UserError
 from dateutil.relativedelta import relativedelta
 
 
-class FleetVehicleCost(models.Model):
+class WorkshopVehicleCost(models.Model):
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _name = 'workshop.vehicle.cost'
     _description = 'Cost related to a vehicle'
     _order = 'date desc, vehicle_id asc'
@@ -79,7 +80,7 @@ class FleetVehicleCost(models.Model):
                 # data as it would result to the creation of a
                 # odometer log with 0, which is to be avoided
                 del data['odometer']
-        return super(FleetVehicleCost, self).create(vals_list)
+        return super(WorkshopVehicleCost, self).create(vals_list)
 
 
 # class FleetVehicleLogContract(models.Model):
@@ -353,14 +354,14 @@ class FleetVehicleCost(models.Model):
 #             self.liter = round(amount / price_per_liter, 2)
 
 
-class FleetVehicleLogServices(models.Model):
+class WorkshopVehicleLogServices(models.Model):
     _name = 'workshop.vehicle.log.services'
     _inherits = {'workshop.vehicle.cost': 'cost_id'}
     _description = 'Services for vehicles'
 
     @api.model
     def default_get(self, default_fields):
-        res = super(FleetVehicleLogServices, self).default_get(default_fields)
+        res = super(WorkshopVehicleLogServices, self).default_get(default_fields)
         service = self.env.ref('workshop.type_service_service_8', raise_if_not_found=False)
         res.update({
             'date': fields.Date.context_today(self),
@@ -373,12 +374,15 @@ class FleetVehicleLogServices(models.Model):
     task_id = fields.Many2one('project.task', 'Work Order')
     date_in = fields.Date(help='The date the vehicle was brought into the workshop', store=True)
     date_out = fields.Date(help='The date the vehicle left the workshop', store=True)
-    nature_of_job = fields.Selection([], store=True)
+    comp_prog = fields.Monetary(string='Computer Programming', store=True)
+    project_id = fields.Many2one('project.project', string='Nature Of Job', required=True, domain=[('name', 'in', ['In Workshop Service', 'Field Service'])])
     state = fields.Selection([
         ('pending', 'Pending'),
-        ('in_progress', 'Work In Progress'),
+        ('in_progress', 'Repair In Progress'),
+        ('awaiting_parts', 'Awaiting Parts'),
+        ('awaiting_confirmation', 'Awaiting Confirmation'),
+        ('awaiting_payment', 'Awaiting Payment'),
         ('done', 'Done'),
-        ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='pending')
     fuel_log = fields.Selection([
         ('empty', 'Empty'),
@@ -418,7 +422,7 @@ class FleetVehicleLogServices(models.Model):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('workshop.job.card.sequence', sequence_date=seq_date) or _('New')
 
-        result = super(FleetVehicleLogServices, self).create(vals)
+        result = super(WorkshopVehicleLogServices, self).create(vals)
         return result
 
     def action_view_task(self):
