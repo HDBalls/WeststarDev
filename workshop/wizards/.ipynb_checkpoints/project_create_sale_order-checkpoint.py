@@ -12,6 +12,19 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
     # #         raise UserError('Bitch be humble.')
     #         super(ProjectCreateSalesOrderInherit, self).action_create_sale_order()
 
+    def action_create_sale_order(self):
+        sale_order = self._prepare_sale_order()
+#         sale_order.action_confirm()
+        view_form_id = self.env.ref('sale.view_order_form').id
+        action = self.env.ref('sale.action_orders').read()[0]
+        action.update({
+            'views': [(view_form_id, 'form')],
+            'view_mode': 'form',
+            'name': sale_order.name,
+            'res_id': sale_order.id,
+        })
+        return action
+    
     def _prepare_sale_order(self):
         sale_order = super(ProjectCreateSalesOrderInherit, self)._prepare_sale_order()
         self._make_billable_line(sale_order)
@@ -91,6 +104,7 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
     def _create_extra_services(self, sale_order, task_id):
         Products = self.env['product.product']
         comp_prog = Products.search([('type', '=', 'service'), ('default_code', '=', 'comp_prog')])
+        sup_sun = Products.search([('type', '=', 'service'), ('default_code', '=', 'sup_sund')])
         if comp_prog:
             sale_order_line = self.env['sale.order.line'].create({
                 'order_id': sale_order.id,
@@ -102,7 +116,16 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
             self.env['sale.order.line'].create({
                 'order_id': sale_order.id,
                 'product_id': comp_prog.id,
-                'price_unit': task_id.service_id.comp_prog,
+                'price_unit': task_id.comp_prog,
+                'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
+                'task_id': task_id.id,
+                'product_uom_qty': 1,
+            })
+        if sup_sun:
+            self.env['sale.order.line'].create({
+                'order_id': sale_order.id,
+                'product_id': sup_sun.id,
+                'price_unit': 0.00,
                 'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
                 'task_id': task_id.id,
                 'product_uom_qty': 1,

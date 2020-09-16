@@ -28,11 +28,11 @@
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/vehicle_model_views.xml',
+        'wizards/create_work_order.xml',
         'views/workshop_vehicle_services_view.xml',
         'views/workshop_vehicle_views.xml',
         'views/project_view.xml',
         'views/contact_view.xml',
-        'wizards/create_work_order.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

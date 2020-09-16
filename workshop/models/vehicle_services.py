@@ -103,7 +103,6 @@ class WorkshopVehicleLogServices(models.Model):
     task_id = fields.Many2one('project.task', 'Work Order')
     date_in = fields.Date(help='The date the vehicle was brought into the workshop', store=True)
     date_out = fields.Date(help='The date the vehicle left the workshop', store=True)
-    comp_prog = fields.Monetary(string='Computer Programming', store=True)
     project_id = fields.Many2one('project.project', string='Nature Of Job', required=True, domain=[('name', 'in', ['In Workshop Service', 'Field Service'])])
     state = fields.Selection([
         ('pending', 'Pending'),
