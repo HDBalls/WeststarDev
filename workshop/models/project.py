@@ -11,7 +11,8 @@ class ProjectTask(models.Model):
     expense_order_line = fields.One2many('project.task.work.order.expenses', 'order_id', string='Travel Expenses', domain="[('product_type', '=', 'service'), ('product_category','ilike','expenses')]")
     lubricant_order_line = fields.One2many('project.task.work.order.lubricant', 'order_id', string='Lubricants', domain="[('product_type', '=', 'product')]")
     service_id = fields.Many2one('workshop.vehicle.log.services', 'Service')
-    vehicle_id = fields.Many2one('workshop.vehicle', related='service_id.vehicle_id', string='Vehicle')
+    vehicle_id = fields.Many2one('workshop.vehicle', related='service_id.vehicle_id', string='Vehicle')    
+    comp_prog = fields.Monetary(string='Computer Programming', store=True)
     # vehicle_id = fields.Integer('workshop.vehicle', string='Vehicle', related=service_id.vehicle_id, store=True, readonly=True)
     
 #     def create(self, vals):
