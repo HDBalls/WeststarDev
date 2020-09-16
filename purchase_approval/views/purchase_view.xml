@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_approve']"  position="replace">
+                    <button name="button_confirm_approval" type="object" states='to approve' string="Confirm Order/ Send for Approval" class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_confirm_approval']"  position="after">
+                    <button name="button_approve" states="confirmation" type="object" class="oe_highlight" string="Approval Purchase Order" groups="account.group_account_manager"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>
