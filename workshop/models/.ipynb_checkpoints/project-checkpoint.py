@@ -11,7 +11,10 @@ class ProjectTask(models.Model):
     expense_order_line = fields.One2many('project.task.work.order.expenses', 'order_id', string='Travel Expenses', domain="[('product_type', '=', 'service'), ('product_category','ilike','expenses')]")
     lubricant_order_line = fields.One2many('project.task.work.order.lubricant', 'order_id', string='Lubricants', domain="[('product_type', '=', 'product')]")
     service_id = fields.Many2one('workshop.vehicle.log.services', 'Service')
-    vehicle_id = fields.Many2one('workshop.vehicle', related='service_id.vehicle_id', string='Vehicle')
+    vehicle_id = fields.Many2one('workshop.vehicle', related='service_id.vehicle_id', string='Vehicle') 
+    computer_programming = fields.Many2one('product.product', domain=[('type', '=', 'service'), ('default_code', '=', 'comp_prog')])
+    comp_prog_amount = fields.Float(string='Programming Amount', store=False, related='computer_programming.list_price')
+    
     # vehicle_id = fields.Integer('workshop.vehicle', string='Vehicle', related=service_id.vehicle_id, store=True, readonly=True)
     
 #     def create(self, vals):
@@ -206,7 +209,7 @@ class ProjectTaskWorkOrderLubricant(models.Model):
     display_type = fields.Selection([
         ('line_section', "Section"),
         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product', domain=[('type','=','product')])
+    product_id = fields.Many2one('product.product', 'Product', domain=[('type','=','product'), ('categ_id','ilike','workshop')])
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Liters')
     product_type = fields.Char()

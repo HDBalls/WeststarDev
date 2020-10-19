@@ -6,6 +6,20 @@
         <field name="arch" type="xml">
             <form string="Diagnosis">
                 <header>
+                    <button name="workshop_action_parts"
+                            string="Start Repair"
+                            type="object"
+                            class="btn btn-primary"
+                            attrs="{'invisible' : [('state', '!=', 'awaiting_parts')]}">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button name="workshop_action_payment"
+                            string="Mark as Done"
+                            type="object"
+                            class="btn btn-primary"
+                            attrs="{'invisible' : [('state', '!=', 'awaiting_payment')]}">
+                        <i class="fa fa-check"></i>
+                    </button>
                     <button name="%(workshop.workshop_work_order_action)d"
                             string="Create Work Order"
                             type="action"
@@ -39,7 +53,6 @@
 <!--                            <field name="nature_of_job"/>-->
                             <field name="fuel_log"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="comp_prog" />
                             <field name="amount" readonly="1"/>
                         </group>
                         <group string="Odometer Details">
@@ -64,7 +77,8 @@
                         <field name="cost_ids" nolabel="1">
                             <tree string="Included Services" editable="bottom">
                                 <field name="operation_type" string="Operation Type"/>
-                                <field name="cost_subtype_id" string="Service" domain="[('category','=','service')]"/>
+<!--                                 <field name="cost_subtype_id" string="Service" domain="[('category','=','service')]"/> -->
+                                <field name="description"/>
                                 <field name="currency_id" invisible="1"/>
                                 <field name="amount" sum="Price" string="Indicative Cost"/>
                             </tree>

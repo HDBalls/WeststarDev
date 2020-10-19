@@ -116,7 +116,7 @@ class Vehicle(models.Model):
 #             costs = Cost.search([('vehicle_id', '=', record.id)])
             services = Services.search([('vehicle_id', '=', record.id)])
             for service in services:
-                record.total_amount += (service.amount + service.comp_prog) 
+                record.total_amount += (service.amount + service.comp_prog_amount) 
                 record.total = record.total_amount
 
     def _compute_count_all(self):
