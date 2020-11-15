@@ -28,7 +28,19 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
     def _prepare_sale_order(self):
         sale_order = super(ProjectCreateSalesOrderInherit, self)._prepare_sale_order()
         warehouse_id = self.env['stock.warehouse'].search([('name', 'ilike', 'workshop'), ('company_id', '=', self.env.company.id)], limit=1)
-        sale_order.write({'warehouse_id': warehouse_id})
+        sale_order.write({
+            'warehouse_id': warehouse_id,
+            'task_id': self.task_id,
+            'computer_programming': self.task_id.comp_prog_amount
+        })
+        sale_order_line = self.env['sale.order.line'].create({
+            'sequence': 0,
+            'order_id': sale_order.id,
+            'display_type': 'line_section',
+            'name': 'Labour',
+            'project_id': self.task_id.project_id.id,  # prevent to re-create a project on confirmation
+            'task_id': self.task_id.id,
+        })
         self._make_billable_line(sale_order)
         return sale_order
 

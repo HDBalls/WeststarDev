@@ -112,12 +112,12 @@ class Vehicle(models.Model):
         self.total = 0
         Cost = self.env['workshop.vehicle.cost']
         Services = self.env['workshop.vehicle.log.services']
-        for record in self:
-#             costs = Cost.search([('vehicle_id', '=', record.id)])
-            services = Services.search([('vehicle_id', '=', record.id)])
-            for service in services:
-                record.total_amount += (service.amount + service.comp_prog_amount) 
-                record.total = record.total_amount
+#         for record in self:
+# #             costs = Cost.search([('vehicle_id', '=', record.id)])
+#             services = Services.search([('vehicle_id', '=', record.id)])
+#             for service in services:
+#                 record.total_amount += (service.amount + service.comp_prog_amount) 
+#                 record.total = record.total_amount
 
     def _compute_count_all(self):
         Odometer = self.env['workshop.vehicle.odometer']

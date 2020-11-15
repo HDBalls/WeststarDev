@@ -14,6 +14,7 @@ class WorkshopVehicleCost(models.Model):
     _order = 'date desc, vehicle_id asc'
 
     name = fields.Char(related='vehicle_id.name', string='Name', store=True, readonly=False)
+    code = fields.Char(store=True, readonly=True)
     owner_id = fields.Many2one('res.partner', related='vehicle_id.driver_id', string='Owner', store=True, readonly=True)
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True, help='Vehicle concerned by this log')
     cost_subtype_id = fields.Many2one('workshop.service.type', 'Type', help='Cost type purchased with this cost')
@@ -70,6 +71,7 @@ class WorkshopVehicleCost(models.Model):
                 data['vehicle_id'] = parent.vehicle_id.id
                 data['date'] = parent.date
                 data['cost_type'] = parent.cost_type
+                data['code'] = self.env['ir.sequence'].next_by_code('workshop.job.card.operation.code.sequence', sequence_date=None) or _('New')
             # if 'contract_id' in data and data['contract_id']:
                 # contract = self.env['workshop.vehicle.log.contract'].browse(data['contract_id'])
                 # data['vehicle_id'] = contract.vehicle_id.id
@@ -115,6 +117,9 @@ class WorkshopVehicleLogServices(models.Model):
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='pending')
     fuel_log = fields.Selection([
         ('empty', 'Empty'),
+        ('one_half', 'One Half'),
+        ('one_quarter', 'One Quarter'),
+        ('three_quarter', 'Three Quarter'),
         ('half', 'Half Full'),
         ('full', 'Full')
     ], string='Fuel')

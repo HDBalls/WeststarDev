@@ -31,7 +31,7 @@ class WorkOrder(models.TransientModel):
     name = fields.Char()
     service_id = fields.Many2one('workshop.vehicle.log.services', string='Services')
     owner_id = fields.Many2one('res.partner', string='Owner')
-    user_id = fields.Many2one('res.users', string='Assigned To', required=1, default=lambda self: self.env.user.id)
+    user_id = fields.Many2one('res.users', string='Assigned To', domain=[('employee_ids.workshop_employee', '!=', False)], required=1, default=lambda self: self.env.user.id)
     deadline = fields.Date(string='Deadline', index=True, copy=False, tracking=True)
     planned_hours = fields.Float(required=1)
 
@@ -77,7 +77,7 @@ class WorkOrder(models.TransientModel):
         # link service to task
         self.service_id.write({
             'task_id': task.id,
-            'state': 'in_progress'
+            # 'state': 'in_progress'
             # 'partner_id': sale_order.partner_id.id,
             # 'email_from': sale_order.partner_id.email,
         })
