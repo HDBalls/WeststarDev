@@ -183,6 +183,7 @@ class VehicleOdometer(models.Model):
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True)
     unit = fields.Selection(related='vehicle_id.odometer_unit', string="Unit", readonly=True)
     driver_id = fields.Many2one(related="vehicle_id.driver_id", string="Driver", readonly=False)
+	company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
 
     @api.depends('vehicle_id', 'date')
     def _compute_vehicle_log_name(self):
