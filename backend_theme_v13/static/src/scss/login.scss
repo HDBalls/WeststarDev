@@ -3,9 +3,14 @@
 
 .oe_login_form{
     background-color:#FFF !important;
+	padding-top:10px;
+	padding-bottom:30px;
 }
 
 .oe_login_form div > label {
     visibility:hidden;
 //     color:#000 !important;
+}
+.oe_login_form .oe_login_buttons .btn-primary{
+	background: rgb(13 27 33) !important;
 }
