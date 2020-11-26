@@ -16,5 +16,10 @@
 				<script type="application/javascript" src="/backend_theme_v13/static/src/js/sidebar-toggle.js"/> -->
 			</xpath>
 		</template>
+        <template id="assets_frontend" inherit_id="web.assets_frontend">
+              <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/backend_theme_v13/static/src/scss/login.scss"/>
+              </xpath>
+        </template>
     </data>
 </odoo>

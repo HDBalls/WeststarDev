@@ -33,6 +33,14 @@
         'views/workshop_vehicle_views.xml',
         'views/project_view.xml',
         'views/contact_view.xml',
+        'views/view_employee.xml',
+        'views/sale_view.xml',
+        'reports/workshop_estimate_invoice_header.xml',
+        'reports/workshop_estimate_invoice.xml',
+        'reports/workshop_account_invoice_2.xml',
+        'reports/workshop_account_invoice_3.xml',
+        'reports/workshop_account_invoice.xml',
+        'reports/report.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

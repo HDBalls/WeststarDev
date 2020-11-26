@@ -23,17 +23,27 @@
                 <field name="service_id" string="Diagnosis"/>
 <!--                <field name="vehicle_id"/>-->
             </xpath>
+            
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="domain">[["employee_ids.workshop_employee","!=",False]]</attribute>
+            </xpath>
             <xpath expr="//field[@name='service_id']" position="after">
                 <field name="vehicle_id"/>
             </xpath>
             <xpath expr="//field[@name='vehicle_id']" position="after">
-                <field name="comp_prog"/>
+                <field name="computer_programming"/>
+            </xpath>
+            <xpath expr="//field[@name='computer_programming']" position="after">
+                <field name="comp_prog_amount"/>
             </xpath>
             <xpath expr="//field[@name='sale_line_id']" position="attributes">
                 <attribute name="attrs">{"invisible": ["|",["is_fsm","=",True],["partner_id","=",False]]}</attribute>
                 <attribute name="force_save">True</attribute>
                 <attribute name="options">{"no_create":true,"no_open":true}</attribute>
                 <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//notebook[1]/page[not(@name)][1]/field[@name='timesheet_ids']/tree[1]/field[@name='employee_id']" position="attributes">
+                <attribute name="domain">[["workshop_employee","!=",False]]</attribute>
             </xpath>
             <xpath expr="//notebook/page[@name='extra_info']" position="before">
                 <page string="Repair Items" id="parts_line">

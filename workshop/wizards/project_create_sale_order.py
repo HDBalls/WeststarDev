@@ -27,6 +27,20 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
     
     def _prepare_sale_order(self):
         sale_order = super(ProjectCreateSalesOrderInherit, self)._prepare_sale_order()
+        warehouse_id = self.env['stock.warehouse'].search([('name', 'ilike', 'workshop'), ('company_id', '=', self.env.company.id)], limit=1)
+        sale_order.write({
+            'warehouse_id': warehouse_id,
+            'task_id': self.task_id,
+            'computer_programming': self.task_id.comp_prog_amount
+        })
+        sale_order_line = self.env['sale.order.line'].create({
+            'sequence': 0,
+            'order_id': sale_order.id,
+            'display_type': 'line_section',
+            'name': 'Labour',
+            'project_id': self.task_id.project_id.id,  # prevent to re-create a project on confirmation
+            'task_id': self.task_id.id,
+        })
         self._make_billable_line(sale_order)
         return sale_order
 
@@ -36,6 +50,7 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
             self._create_lubricant_item(sale_order, self.task_id)
             self._create_expenses_item(sale_order, self.task_id)
             self._create_extra_services(sale_order, self.task_id)
+            self.task_id.service_id.write({'state': 'awaiting_confirmation'})
 
     def _create_parts_item(self, sale_order, task_id):
         ## Create section in sales Order line
@@ -103,20 +118,19 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
             
     def _create_extra_services(self, sale_order, task_id):
         Products = self.env['product.product']
-        comp_prog = Products.search([('type', '=', 'service'), ('default_code', '=', 'comp_prog')])
         sup_sun = Products.search([('type', '=', 'service'), ('default_code', '=', 'sup_sund')])
-        if comp_prog:
-            sale_order_line = self.env['sale.order.line'].create({
-                'order_id': sale_order.id,
-                'display_type': 'line_section',
-                'name': 'Extra',
-                'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
-                'task_id': task_id.id,
-            })
+        sale_order_line = self.env['sale.order.line'].create({
+            'order_id': sale_order.id,
+            'display_type': 'line_section',
+            'name': 'Extra',
+            'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
+            'task_id': task_id.id,
+        })
+        if task_id.computer_programming:
             self.env['sale.order.line'].create({
                 'order_id': sale_order.id,
-                'product_id': comp_prog.id,
-                'price_unit': task_id.comp_prog,
+                'product_id': task_id.computer_programming.id,
+#                 'price_unit': task_id.comp_prog,
                 'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
                 'task_id': task_id.id,
                 'product_uom_qty': 1,

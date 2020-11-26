@@ -14,6 +14,7 @@ class WorkshopVehicleCost(models.Model):
     _order = 'date desc, vehicle_id asc'
 
     name = fields.Char(related='vehicle_id.name', string='Name', store=True, readonly=False)
+    code = fields.Char(store=True, readonly=True)
     owner_id = fields.Many2one('res.partner', related='vehicle_id.driver_id', string='Owner', store=True, readonly=True)
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True, help='Vehicle concerned by this log')
     cost_subtype_id = fields.Many2one('workshop.service.type', 'Type', help='Cost type purchased with this cost')
@@ -70,6 +71,7 @@ class WorkshopVehicleCost(models.Model):
                 data['vehicle_id'] = parent.vehicle_id.id
                 data['date'] = parent.date
                 data['cost_type'] = parent.cost_type
+                data['code'] = self.env['ir.sequence'].next_by_code('workshop.job.card.operation.code.sequence', sequence_date=None) or _('New')
             # if 'contract_id' in data and data['contract_id']:
                 # contract = self.env['workshop.vehicle.log.contract'].browse(data['contract_id'])
                 # data['vehicle_id'] = contract.vehicle_id.id
@@ -101,6 +103,7 @@ class WorkshopVehicleLogServices(models.Model):
         return res
     name = fields.Char(string='Job Card #', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
     task_id = fields.Many2one('project.task', 'Work Order')
+    sale_order_id = fields.Many2one('sale.order', 'Sales Order', related='task_id.sale_order_id')
     date_in = fields.Date(help='The date the vehicle was brought into the workshop', store=True)
     date_out = fields.Date(help='The date the vehicle left the workshop', store=True)
     project_id = fields.Many2one('project.project', string='Nature Of Job', required=True, domain=[('name', 'in', ['In Workshop Service', 'Field Service'])])
@@ -114,16 +117,38 @@ class WorkshopVehicleLogServices(models.Model):
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='pending')
     fuel_log = fields.Selection([
         ('empty', 'Empty'),
+        ('one_half', 'One Half'),
+        ('one_quarter', 'One Quarter'),
+        ('three_quarter', 'Three Quarter'),
         ('half', 'Half Full'),
         ('full', 'Full')
     ], string='Fuel')
     # vendor_id = fields.Many2one('res.partner', 'Vendor')
     # we need to keep this field as a related with store=True because the graph view doesn't support
     # (1) to address fields from inherited table and (2) fields that aren't stored in database
+    amount = fields.Monetary('Total Price', compute='_calculate_total')
     cost_amount = fields.Float(related='task_id.material_line_total_price', string='Amount', store=True, readonly=True)
     notes = fields.Text()
     cost_id = fields.Many2one('workshop.vehicle.cost', 'Cost', required=True, ondelete='cascade')
 
+    def _calculate_total(self):
+#         Invoices = self.env['account.move']
+#         Sales = self.env['sale.order']
+        for record in self:
+#             sale = Sales.search([('id', '=', record.task_id.sale_order_id)])
+            record.amount = record.cost_amount
+            for cost in record.cost_ids:
+                record.amount = record.amount + cost.amount 
+#             invoices = Invoices.search((['sale_order_id', '=', record.task_id.sale_order_id]))
+#             if invoices:
+#                 for invoice in invoices:
+
+    def workshop_action_parts(self):
+        self.write({'state': 'in_progress'})
+    
+    def workshop_action_payment(self):
+        self.write({'state': 'done'}) 
+        
     def action_in_progress(self):
         return self.write({'state': 'in_progress'})
 

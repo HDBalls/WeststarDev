@@ -112,12 +112,12 @@ class Vehicle(models.Model):
         self.total = 0
         Cost = self.env['workshop.vehicle.cost']
         Services = self.env['workshop.vehicle.log.services']
-        for record in self:
-#             costs = Cost.search([('vehicle_id', '=', record.id)])
-            services = Services.search([('vehicle_id', '=', record.id)])
-            for service in services:
-                record.total_amount += (service.amount + service.comp_prog) 
-                record.total = record.total_amount
+#         for record in self:
+# #             costs = Cost.search([('vehicle_id', '=', record.id)])
+#             services = Services.search([('vehicle_id', '=', record.id)])
+#             for service in services:
+#                 record.total_amount += (service.amount + service.comp_prog_amount) 
+#                 record.total = record.total_amount
 
     def _compute_count_all(self):
         Odometer = self.env['workshop.vehicle.odometer']
@@ -183,6 +183,7 @@ class VehicleOdometer(models.Model):
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True)
     unit = fields.Selection(related='vehicle_id.odometer_unit', string="Unit", readonly=True)
     driver_id = fields.Many2one(related="vehicle_id.driver_id", string="Driver", readonly=False)
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
 
     @api.depends('vehicle_id', 'date')
     def _compute_vehicle_log_name(self):
