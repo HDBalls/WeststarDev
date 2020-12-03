@@ -3,7 +3,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
-class SaleApprovalReason(models.Model):
+class SaleApprovalReason(models.TransientModel):
     _name = 'sale.approval.reason'
 
     approval_for = fields.Selection([
