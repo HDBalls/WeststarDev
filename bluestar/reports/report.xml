@@ -11,13 +11,13 @@
         attachment="'PRO-FORMA - %s' % (object.name)"
     />
     <report
-        id="action_bluestar_jbn_saleorder_report"
+        id="action_bluestar_saleorder_for_jbn_report"
         model="sale.order"
-        string="Proforma Invoice After Sales (JBN)"
+        string="Proforma Invoice (JBN)"
         report_type="qweb-pdf"
-        name="bluestar.report_jbn_bluestar_saleorder"
-        file="bluestar.report_jbn_bluestar_saleorder"
+        name="bluestar.report_bluestar_for_jbn_saleorder"
+        file="bluestar.report_bluestar_for_jbn_saleorder"
         attachment_use="True"
-        attachment="'PRO-FORMA - %s' % (object.name)"
+        attachment="'PRO-FORMA JBN - %s' % (object.name)"
     />
 </odoo>

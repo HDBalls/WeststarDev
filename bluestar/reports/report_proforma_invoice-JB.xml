@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<template id="report_bluestar_saleorder_jb_document">
+<template id="report_bluestar_saleorder_for_jbn_document">
     <t t-call="bluestar.report_header">
-<!--        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />-->
-<!--        <t t-set="address">-->
-<!--            <div t-field="doc.partner_id"-->
-<!--                t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />-->
-<!--            <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>-->
-<!--        </t>-->
-<!--        <t t-if="doc.partner_shipping_id == doc.partner_invoice_id-->
-<!--                             and doc.partner_invoice_id != doc.partner_id-->
-<!--                             or doc.partner_shipping_id != doc.partner_invoice_id">-->
-<!--            <t t-set="information_block">-->
-<!--                <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and Shipping Address:</strong>-->
-<!--                <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong>-->
-<!--                <div t-field="doc.partner_invoice_id"-->
-<!--                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>-->
-<!--                <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">-->
-<!--                    <strong>Shipping Address:</strong>-->
-<!--                    <div t-field="doc.partner_shipping_id"-->
-<!--                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>-->
-<!--                </t>-->
-<!--            </t>-->
-<!--        </t>-->
         <div class="page">
             <div class="oe_structure"/>
 
@@ -100,7 +79,7 @@
                         <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
 
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
-                            <t t-if="not line.display_type">
+                            <t t-if="not (line.display_type OR (line.product_id.categ_id.name in ['Deliveries', 'Discount']))">
                                 <td name="td_internal_reference"><span t-field="line.product_id.default_code"/></td>
                                 <td name="td_n_p_number"><span></span></td>
 								<td name="td_eta"><span></span></td>
@@ -169,10 +148,10 @@
                                 <t t-set="percentage" t-value=""/>
 								<t t-set="discount" t-value="0.00"/>
 								<t t-if="'amount' in discount_price(doc.id)">
-<!--                                     <t t-set="percentage" t-value="discount(doc.id)['percentage']"/> -->
+                                    <t t-set="percentage" t-value="discount(doc.id)['percentage']"/>
                                     <t t-set="discount" t-value="discount_price(doc.id)['amount']"/>
                                 </t>
-								<td name="td_freight_amount"><strong>Discount <span t-esc="percentage"/></strong></td>
+								<td name="td_freight_amount"><strong>Discounts <span t-esc="discount(doc.id)['percentage']"/></strong></td>
 								<td name="td_amount_total" class="text-right">
                                     <span t-esc="discount"
 										t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
@@ -247,10 +226,10 @@
 </template>
 
 
-<template id="report_jbn_bluestar_saleorder">
+<template id="report_bluestar_for_jbn_saleorder">
     <t t-call="web.html_container">
         <t t-foreach="docs" t-as="doc">
-            <t t-call="bluestar.report_bluestar_saleorder_jb_document" t-lang="doc.partner_id.lang"/>
+            <t t-call="bluestar.report_bluestar_saleorder_for_jbn_document" t-lang="doc.partner_id.lang"/>
         </t>
     </t>
 </template>

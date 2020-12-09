@@ -3,7 +3,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 import re
 
 class SaleOrder(models.AbstractModel):
-    _name = 'report.bluestar.report_jbn_bluestar_saleorder'
+    _name = 'report.bluestar.report_bluestar_for_jbn_saleorder'
     _description = 'Proforma Invoice JBN'
     
     def get_total_by_product_categories(self, order_id):
