@@ -32,7 +32,7 @@
                     <address>
 						<span>JULIUS BERGER NIGERIA PLC</span><br />	
 						<span>Plant and Equipment Department (PED)</span><br />
-						<span>Attn</span><span t-field="doc.user_id.name"/>
+						<span>Attn:- </span><span t-field="doc.user_id.name"/>
 					</address>
 					<table class="table table-bordered">
 						<tr>
@@ -165,6 +165,19 @@
                                     <span t-field="doc.amount_untaxed"/>
                                 </td>
                             </tr>
+							<tr>
+                                <t t-set="percentage" t-value=""/>
+								<t t-set="discount" t-value="0.00"/>
+								<t t-if="'amount' in discount_price(doc.id)">
+<!--                                     <t t-set="percentage" t-value="discount(doc.id)['percentage']"/> -->
+                                    <t t-set="discount" t-value="discount_price(doc.id)['amount']"/>
+                                </t>
+								<td name="td_freight_amount"><strong>Discount <span t-esc="percentage"/></strong></td>
+								<td name="td_amount_total" class="text-right">
+                                    <span t-esc="discount"
+										t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                </td>
+							</tr>
                             <tr class="o_subtotal" style="">
                                 <td name="td_amount_untaxed_label"><strong>Subtotal</strong></td>
                                 <td name="td_amount_untaxed" class="border-black text-right">
