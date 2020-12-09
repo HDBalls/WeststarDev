@@ -10,7 +10,7 @@
                 </xpath>
 
                 <xpath expr="//button[@name='button_confirm_approval']"  position="after">
-                    <button name="button_approve" states="confirmation" type="object" class="oe_highlight" string="Approval Purchase Order" groups="account.group_account_manager"/>
+                    <button name="button_approve" states="confirmation" type="object" class="oe_highlight" string="Approval Purchase Order" groups="purchase_approval.group_account_approver"/>
                 </xpath>
             </field>
     </record>
