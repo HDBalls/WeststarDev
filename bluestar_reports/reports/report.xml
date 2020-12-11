@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <report
-        id="action_bluestar_saleorder_report"
+        id="action_bluestar_report_saleorder_report"
         model="sale.order"
         string="Proforma Invoice After Sales"
         report_type="qweb-pdf"
@@ -11,7 +11,7 @@
         attachment="'PRO-FORMA - %s' % (object.name)"
     />
     <report
-        id="action_bluestar_saleorder_for_jbn_report2"
+        id="action_bluestar_report_saleorder_for_jbn_report"
         model="sale.order"
         string="Proforma Invoice (JB)"
         report_type="qweb-pdf"
