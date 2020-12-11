@@ -5,8 +5,8 @@
         model="sale.order"
         string="Proforma Invoice After Sales"
         report_type="qweb-pdf"
-        name="bluestar.report_bluestar_saleorder"
-        file="bluestar.report_bluestar_saleorder"
+        name="bluestar.report_bluestar_saleorder_report"
+        file="bluestar.report_bluestar_saleorder_report"
         attachment_use="True"
         attachment="'PRO-FORMA - %s' % (object.name)"
     />
@@ -15,8 +15,8 @@
         model="sale.order"
         string="Proforma Invoice (JB)"
         report_type="qweb-pdf"
-        name="bluestar.report_bluestar_for_jbn_saleorder"
-        file="bluestar.report_bluestar_for_jbn_saleorder"
+        name="bluestar.report_bluestar_for_jbn_saleorder_report"
+        file="bluestar.report_bluestar_for_jbn_saleorder_report"
         attachment_use="True"
         attachment="'PRO-FORMA JB - %s' % (object.name)"
     />
