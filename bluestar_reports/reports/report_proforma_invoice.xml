@@ -239,27 +239,6 @@
                       </ul>
                 </span>
             </div>
-            <div class="row mb-5">
-                <div class="ml-5">
-                    <h3>NAIRA ACCOUNT DETAILS </h3>
-                    <span><strong>ECOBANK ACCOUNT </strong></span><br/>
-                    <span><strong>Account Name. Weststar Associates Limited</strong></span><br/>
-                    <span><strong>Account No.: 5882000073</strong></span><br/>
-                    <span><strong>Sort Code: 050152416</strong></span>
-                </div>
-            </div>
-            <div class="row mx-5">
-                <div class="col-6">
-                    <span>U.Urban</span><br/>
-                    <span><strong>Part's Manager</strong></span>
-                </div>
-                <div class="col-6 text-right">
-                    <span>
-                        <span t-field="doc.user_id.name"/>
-                    </span><br/>
-                    <span><strong>Part's Adviser</strong></span>
-                </div>
-            </div>
 
 <!--            <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">-->
 <!--                <div class="offset-8">-->

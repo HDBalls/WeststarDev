@@ -43,6 +43,18 @@ class SaleOrder(models.AbstractModel):
             
         return discount
     
+    def get_euro_exchange_rate_to_naira(self, date):
+        Currency = self.env['res.currency'].search([('name', 'ilike', 'eur')])
+        
+        return (1 / Currency.rate)
+    
+    def is_jbn(self, docids):
+        SaleOrder = self.env['sale.order'].search([('id', '=', docids), ('partner_id.name', 'ilike', 'JULIUS BERGER')])
+        
+        if SaleOrder:
+            return True
+        return False
+    
     @api.model
     def _get_report_values(self, docids, data=None):
             
@@ -52,5 +64,7 @@ class SaleOrder(models.AbstractModel):
             'docs': self.env['sale.order'].browse(docids),
             'data': data,
             'total': self.total_by_product_categories,
-            'discount_price': self.get_discount_total
+            'discount_price': self.get_discount_total,
+            'euro_rate': self.get_euro_exchange_rate_to_naira,
+            'is_jbn': self.is_jbn
         }
