@@ -24,10 +24,10 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'data/ir_sequence_data.xml',
-        'views/sales_view.xml'
-        # 'views/templates.xml',
+        'reports/report_header.xml',
+        'reports/report_proforma_invoice.xml',
+        'reports/report_proforma_invoice-JB.xml',
+        'reports/report.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

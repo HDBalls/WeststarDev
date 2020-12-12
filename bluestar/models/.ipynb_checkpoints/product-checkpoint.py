@@ -53,7 +53,7 @@ class Product(models.Model):
 #         help="Price at which the product is sold to customers.")
     l_price = fields.Float('Compute Sales Price', default=1.0, digits='Product Price')
 
-    @api.onchange('sales_factor', 'market_code')
+    @api.onchange('sales_factor', 'market_code', 'standard_price')
     def _cal_list_price(self):
         for record in self:
 #             record.l_price = record.standard_price * record.sales_factor.factor
