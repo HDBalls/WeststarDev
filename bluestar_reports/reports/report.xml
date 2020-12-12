@@ -3,7 +3,7 @@
     <report
         id="action_bluestar_report_saleorder_reports"
         model="sale.order"
-        string="Proforma Invoice for After Sales"
+        string="Proforma Invoice / After Sales"
         report_type="qweb-pdf"
         name="bluestar_reports.report_bluestar_proforma_invoice"
         file="bluestar_reports.report_bluestar_proforma_invoice"
