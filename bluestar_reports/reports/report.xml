@@ -3,21 +3,23 @@
     <report
         id="action_bluestar_report_saleorder_reports"
         model="sale.order"
-        string="Proforma Invoice After Sales"
+        string="Proforma Invoice for After Sales"
         report_type="qweb-pdf"
-        name="bluestar_reports.report_bluestar_saleorder_report"
-        file="bluestar_reports.report_bluestar_saleorder_report"
+        name="bluestar_reports.report_bluestar_proforma_invoice"
+        file="bluestar_reports.report_bluestar_proforma_invoice"
         attachment_use="True"
         attachment="'PRO-FORMA - %s' % (object.name)"
     />
-    <report
-        id="action_bluestar_report_saleorder_for_jbn_reports"
-        model="sale.order"
-        string="Proforma Invoice (JB)"
-        report_type="qweb-pdf"
-        name="bluestar_reports.report_bluestar_for_jbn_saleorder_report"
-        file="bluestar_reports.report_bluestar_for_jbn_saleorder_report"
-        attachment_use="True"
-        attachment="'PRO-FORMA JB - %s' % (object.name)"
-    />
+    <template id="report_bluestar_proforma_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-if="'JULIUS BERGER' in doc.partner_id.name.upper()">
+                    <t t-call="bluestar_reports.report_bluestar_proforma_invoice_JBN" t-lang="doc.partner_id.lang"/>
+                </t>
+                <t t-else="">
+                    <t t-call="bluestar_reports.report_bluestar_proforma_invoice_all_customers" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </t>
+    </template>
 </odoo>
