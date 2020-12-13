@@ -25,6 +25,7 @@
     # always loaded
     'data': [
         'reports/report_header.xml',
+        'reports/report_proforma.xml',
         'reports/report_proforma_invoice.xml',
         'reports/report_proforma_invoice-JB.xml',
         'reports/report.xml'
