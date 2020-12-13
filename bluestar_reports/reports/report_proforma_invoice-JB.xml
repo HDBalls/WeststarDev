@@ -123,6 +123,10 @@
                 <t t-set="freight" t-value="total(doc.id)['Deliveries']"/>
             </t>
 
+            <t t-set="amount_difference" t-value="doc.amount_undiscounted - doc.amount_untaxed" />
+            <t t-set="discount_percentage" t-value="(amount_difference / doc.amount_undiscounted) * 100"/>
+            <t t-set="discount" t-if="amount_difference > 0" t-value="amount_difference" />
+            <t t-set="percentage" t-if="amount_difference > 0" t-value="rount(discount_percentage)" />
             <div class="clearfix" name="so_total_summary">
                 <div id="total" class="row" name="total">
                     <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
@@ -130,7 +134,7 @@
                             <tr class="" style="">
                                 <td><strong>Total Amount NET</strong></td>
                                 <td class="text-right">
-                                    <span t-esc="doc.amount_untaxed - (discount + freight)"
+                                    <span t-esc="doc.amount_undiscounted - (discount + freight)"
                                         t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
                                 </td>
                             </tr>
