@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="external_layout_header" inherit_id="web.external_layout_header">
+    <template id="external_layout_header" inherit_id="web.external_layout">
         <xpath expr="//footer" position="replace">
             <div class="row">
                 <div class="col-4">
