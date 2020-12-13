@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<template id="report_bluestar_saleorder_document">
-    <t t-call="bluestar.report_header">
+<template id="report_bluestar_proforma_invoice_all_customers">
+    <t t-call="bluestar_reports.report_header">
 <!--        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />-->
 <!--        <t t-set="address">-->
 <!--            <div t-field="doc.partner_id"-->
@@ -226,39 +226,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-3 mb-5">
-                <span>
-                      <ul>
-                        <li>All prices quoted herein are in Naira and are net of taxes.</li>
-                        <li>Prices quoted herein are inclusive of Estimated airfreight and other additional charges that might be incurred.</li>
-                        <li>Actual charges will be reflected on the final invoice.</li>
-                        <li>Payment of invoice value has to be made when parts is received.</li>
-                        <li>Parts is available on stock.</li>
-                        <li>Delivery time is approximately weeks of order confirmation and order placement.</li>
-                        <li>All subsequent payment should be made into the account marked in red below.</li>
-                      </ul>
-                </span>
-            </div>
-            <div class="row mb-5">
-                <div class="ml-5">
-                    <h2>NAIRA ACCOUNT DETAILS </h2>
-                    <span><strong>ECOBANK ACCOUNT </strong></span><br/>
-                    <span><strong>Account Name. Weststar Associates Limited</strong></span><br/>
-                    <span><strong>Account No.: 5882000073</strong></span><br/>
-                    <span><strong>Sort Code: 050152416</strong></span>
+            <div class="row">
+                <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
+                    <div class="offset-8">
+                        <strong>Signature</strong>
+                    </div>
+                    <div class="offset-8">
+                        <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                    </div>
+                    <div class="offset-8 text-center">
+                        <p t-field="doc.signed_by"/>
+                    </div>
                 </div>
-            </div>
-            <div class="row mx-5">
-                <div class="col-6">
-                    <span>U.Urban</span><br/>
-                    <span><strong>Part's Manager</strong></span>
-                </div>
-                <div class="col-6 text-right">
-                    <span>
-                        <span t-field="doc.user_id.name"/>
-                    </span><br/>
-                    <span><strong>Part's Adviser</strong></span>
-                </div>
+
+                <div class="oe_structure"/>
+
+                <p t-field="doc.note" />
+                <p t-if="doc.payment_term_id.note">
+                    <span t-field="doc.payment_term_id.note"/>
+                </p>
+                <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.sudo().note">
+                    <strong>Fiscal Position Remark:</strong>
+                    <span t-field="doc.fiscal_position_id.sudo().note"/>
+                </p>
             </div>
 
 <!--            <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">-->
@@ -288,13 +278,13 @@
 </template>
 
 
-<template id="report_bluestar_saleorder">
+<!-- <template id="report_bluestar_saleorder_report">
     <t t-call="web.html_container">
         <t t-foreach="docs" t-as="doc">
-            <t t-call="bluestar.report_bluestar_saleorder_document" t-lang="doc.partner_id.lang"/>
+            <t t-call="bluestar_reports.report_bluestar_saleorder_document_report" t-lang="doc.partner_id.lang"/>
         </t>
     </t>
-</template>
+</template> -->
 
 <!--<template id="report_saleorder_proforma">-->
 <!--    <t t-call="web.html_container">-->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_header" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[contains(@t-attf-class, 'footer')]" position="replace">
+            <div  t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            
+                <div class="row">
+                    <div class="col-4">
+                        <t t-if="'Lagos' in company.name">
+                            <h5>ECOBANK ACCOUNT</h5>
+                            <span>Account Name. Weststar Associates Limited</span><br />
+                            <span>Account No.: 5882000073</span>
+                        </t>
+                        <t t-else="">
+                            <h5>POLARIS BANK</h5>
+                            <span>Account Name. Weststar Associates Limited- Abuja Imprest</span><br />
+                            <span>Account No.: 1771293368</span>
+                        </t>
+                    </div>
+                    <div class="col-4">
+                        <t t-if="'Lagos' in company.name">
+                            <h5>POLARIS BANK</h5>
+                            <span>Account Name. Weststar Associates Limited</span><br />
+                            <span>Account No.: 1770024538</span>
+                        </t>
+                        <t t-else="">
+                            <h5>ACCESS BANK</h5>
+                            <span>Account Name. Weststar Associates Limited- Abuja Imprest</span><br />
+                            <span>Account No.: 0801445958</span>
+                        </t>
+                    </div>
+                    <div class="col-4">
+                        <t t-if="'Lagos' in company.name">
+                            <h5>ZENITH BANK</h5>
+                            <span>Account Name. Weststar Associates Limited</span><br />
+                            <span>Account No.: 1015194289</span>
+                        </t>
+                        <t t-else="">
+                            <h5>ZENITH BANK</h5>
+                            <span>Account Name. Weststar Associates Limited- Abuja Imprest</span><br />
+                            <span>Account No.: 1015530164</span>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
