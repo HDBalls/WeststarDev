@@ -137,7 +137,7 @@
                                 </td>
                             </tr>
                             <t t-set="discount" t-if="amount_difference > 0" t-value="-amount_difference" />
-                            <t t-set="percentage" t-if="amount_difference > 0" t-value="round(discount_percentage)+'%'" />
+                            <t t-set="percentage" t-if="amount_difference > 0" t-value="round(discount_percentage),'%'" />
 							<tr>
 								<td name="td_freight_amount"><strong>Discount <span t-esc="percentage"/></strong></td>
 								<td name="td_amount_total" class="text-right">
