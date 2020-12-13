@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="external_layout_header" inherit_id="web.external_layout">
+    <template id="external_layout_header" inherit_id="web.external_layout_standard">
         <xpath expr="//div[contains(@t-attf-class, 'footer')]" position="replace">
-            <div  t-attf-class="footer o_standard_footer o_company_#{company.id}_layout" >
+            <div  t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            
                 <div class="row">
                     <div class="col-4">
                         <t t-if="'Lagos' in company.name">
