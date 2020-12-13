@@ -24,7 +24,7 @@
         <field name="dpi">100</field>
     </record>
 
-    <record id="bluestar_reports.action_bluestar_report_saleorder_reports" model="ir.actions.report.xml">
+    <record id="bluestar_reports.action_bluestar_report_saleorder_reports" model="ir.actions.report">
         <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" />
     </record>
 </odoo>
