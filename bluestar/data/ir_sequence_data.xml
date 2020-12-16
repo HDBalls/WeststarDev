@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for res.partner customer number -->
+        <record id="seq_res_partner_customer_number" model="ir.sequence">
+            <field name="name">Customer Number</field>
+            <field name="code">bluestar.customer.number.sequence</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <!-- Sequences for res.partner supplier number -->
+        <record id="seq_res_partner_supplier_number" model="ir.sequence">
+            <field name="name">Supplier Number</field>
+            <field name="code">bluestar.supplier.number.sequence</field>
+            <field name="prefix">SUPP</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
