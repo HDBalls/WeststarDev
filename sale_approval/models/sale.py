@@ -2,6 +2,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero, float_compare, DEFAULT_SERVER_DATETIME_FORMAT
+import re
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -60,10 +61,32 @@ class SaleOrderLine(models.Model):
                 }
                 warning = {
                     'title': _('Warning!'),
-                    'message': (_('Your are not allowed to approve a discount. Kindly select another approver.!'))
+                    'message': (_('The specified Approver is not authorized to approve the discount of '+ str(self.discount) + \
+                                    '%. Kindly select another approver!'))
                 }
                 return {'warning': warning, 'value': value}
-
-
- 
-
+            
+    def write(self, values):
+        name = self.name
+        
+        if not self.order_id.approver_id:
+            raise UserError('Please select a Sales Approver!')
+            
+        approver_id = self.order_id.approver_id
+        product_id = self.product_id
+        
+        if 'DISCOUNT' in name.upper() and 'DISCOUNT' in product_id.categ_id.name.upper():
+            rows = re.findall('\d+%|([0-9]\d?)\.\d+%', self.product_id.name)
+            has_row = bool(rows)
+            discount = 0.00
+#             discount = (re.findall('[\d.]+', self.product_id.name))
+            if has_row:
+                discount = float(rows[0])
+    
+            if not discount <= approver_id.sale_order_discount_limit:
+                raise UserError(_('The specified Approver is not authorized to approve the discount of '+ str(discount) + \
+                                    '%. Kindly select another Approver!'))
+            
+        result = super(SaleOrderLine, self).write(values)
+        return result
+        
