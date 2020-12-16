@@ -36,7 +36,7 @@
                         </t>
                         <div class="row" style="bottom:0px;position:absolute">
                             <div class="col-4 col-md">
-                                <t t-if="'Lagos' in company.name">
+                                <t t-if="'Lagos' in doc.company_id.name">
                                     <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">
                                         <h6>ECOBANK ACCOUNT</h6>
                                         <li>Account Name. Weststar Associates Limited</li>
@@ -52,7 +52,7 @@
                                 </t>
                             </div>
                             <div class="col-4 col-md">
-                                <t t-if="'Lagos' in company.name">
+                                <t t-if="'Lagos' in doc.company_id.name">
                                     <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">
                                         <h6>POLARIS BANK</h6>
                                         <li>Account Name. Weststar Associates Limited</li>
@@ -68,7 +68,7 @@
                                 </t>
                             </div>
                             <div class="col-4 col-md">
-                                <t t-if="'Lagos' in company.name">
+                                <t t-if="'Lagos' in doc.company_id.name">
                                     <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">
                                         <h6>ZENITH BANK</h6>
                                         <li>Account Name. Weststar Associates Limited</li>
