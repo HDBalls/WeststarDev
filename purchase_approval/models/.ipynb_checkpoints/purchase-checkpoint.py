@@ -26,6 +26,10 @@ class PurchaseOrder(models.Model):
         # self.write({'state': 'purchase', 'date_approve': fields.Date.context_today(self)})
         # self.filtered(lambda p: p.company_id.po_lock == 'lock').write({'state': 'done'})
         # return {}
+     
+    def button_confirm_order(self, force=False):
+        for purchase in self:
+            purchase.state = 'to approve'
 
     @api.model
     def _getUserGroupId(self):
