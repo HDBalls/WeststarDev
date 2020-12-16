@@ -34,7 +34,7 @@
                         <t t-else="">
                             <t t-call="bluestar_reports.report_bluestar_proforma_invoice_all_customers" t-lang="doc.partner_id.lang"/>
                         </t>
-                        <div class="row" style="bottom:0px;position:absolute">
+                        <div class="row" style="bottom:-100px;position:absolute">
                             <div class="col-4 col-md">
                                 <t t-if="'Lagos' in doc.company_id.name">
                                     <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">
