@@ -40,7 +40,7 @@ class SaleApprovalReason(models.TransientModel):
                     raise UserError('You have set a limit that cannot be approved.\
                         Kindly reduce the amount you have specified for the items')
                 sale_br_obj.write({'approver_id': next_larg_amount_user_id.id, 'state': 'waiting_for_approval'})
-            discount = ((sale_br_obj.amount_total - sale_br_obj.amount_discounted) / sale_br_obj.amount_total) * 100
+            discount = ((sale_br_obj.amount_total - sale_br_obj.amount_undiscounted) / sale_br_obj.amount_total) * 100
 
             if not discount <= sale_br_obj.sale_order_discount_limit:
                 user_search_discount = user_obj.search([('sale_order_discount_limit', '>=', self.requested_discount)],
