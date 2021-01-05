@@ -33,6 +33,6 @@ class ProviderBluestar(models.Model):
         if self.product_id.default_code == 'Delivery_Air':
             return (chargeable_weight + (rate_to_naira * 12))
         elif self.product_id.default_code == 'Delivery_Sea':
-            return (volume + 225)
+            return (volume * 225)
         
         return 0.00
