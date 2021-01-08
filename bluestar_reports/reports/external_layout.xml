@@ -29,11 +29,11 @@
                             </ul>
                         </t>
                         <t t-else="">
-                            <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">
-                                <h6>ACCESS BANK</h6>
-                                <li>Account Name. Weststar Associates Limited- Abuja Imprest</li>
-                                <li>Account No.: 0801445958</li>
-                            </ul>
+<!--                            <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">-->
+<!--                                <h6>ACCESS BANK</h6>-->
+<!--                                <li>Account Name. Weststar Associates Limited- Abuja Imprest</li>-->
+<!--                                <li>Account No.: 0801445958</li>-->
+<!--                            </ul>-->
                         </t>
                     </div>
                     <div class="col-4 col-md">
@@ -47,7 +47,7 @@
                         <t t-else="">
                             <ul class="list-unstyled text-small border-bottom-0" style="line-height:1.2 !important">
                                 <h6>ZENITH BANK</h6>
-                                <li>Account Name. Weststar Associates Limited- Abuja Imprest</li>
+                                <li>Account Name. Weststar Associates Limited - Abuja</li>
                                 <li>Account No.: 1015530164</li>
                             </ul>
                         </t>
