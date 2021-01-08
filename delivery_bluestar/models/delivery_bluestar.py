@@ -31,7 +31,7 @@ class ProviderBluestar(models.Model):
     def _get_price_by_weight(self, chargeable_weight, volume, currency):
         rate_to_naira = (1 / currency.rate)
         if self.product_id.default_code == 'Delivery_Air':
-            return (chargeable_weight + (rate_to_naira * 12))
+            return chargeable_weight + (rate_to_naira * 12)
         elif self.product_id.default_code == 'Delivery_Sea':
             return (volume * 225)
         
