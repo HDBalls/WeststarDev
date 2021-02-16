@@ -29,6 +29,7 @@
         'reports/report_proforma.xml',
         'reports/report_proforma_invoice.xml',
         'reports/report_proforma_invoice-JB.xml',
+        'reports/account_report.xml',
         'reports/report.xml'
     ],
     # only loaded in demonstration mode
