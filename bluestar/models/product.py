@@ -46,6 +46,7 @@ class Product(models.Model):
     # factor_id = fields.Many2one('market.market_code', 'Market Code', tracking=True, help='Get the products market code', copy=False)
     sales_factor = fields.Many2one('product.template.sales.factor', related='market_code.factor_id', string='Sales Factor', tracking=True)
     market_code = fields.Many2one('product.template.market.code', 'Market Code', tracking=True)
+    gross_price = fields.Float('Gross Cost Price')
     # list_price: catalog price, user defined
 #     list_price = fields.Float(
 #         'Sales Price', default=1.0,
@@ -57,7 +58,7 @@ class Product(models.Model):
     def _cal_list_price(self):
         for record in self:
 #             record.l_price = record.standard_price * record.sales_factor.factor
-            record.list_price = record.standard_price * record.sales_factor.factor
+            record.list_price = record.gross_price * record.sales_factor.factor
             # record.update({
             #     'list_price': list_price
             # })
@@ -66,5 +67,10 @@ class Product(models.Model):
         products = self.env['product.template'].search([('type','=','product')])
         for product in products:
           if product.sales_factor:
-            list_price = product.standard_price * product.sales_factor.factor
+            list_price = product.gross_price * product.sales_factor.factor
             product.write({'list_price': list_price})
+
+    def _cal_update_gross_price_from_standard_price(self):
+        products = self.env['product.template'].search([('type','=','product')])
+        for product in products:
+            product.write({'gross_price': product.standard_price})
