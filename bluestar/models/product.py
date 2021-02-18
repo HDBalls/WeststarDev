@@ -57,11 +57,12 @@ class Product(models.Model):
     @api.onchange('sales_factor', 'market_code')
     def _cal_list_price(self):
         for record in self:
-#             record.l_price = record.standard_price * record.sales_factor.factor
             record.list_price = record.gross_price * record.sales_factor.factor
-            # record.update({
-            #     'list_price': list_price
-            # })
+
+    @api.onchange('gross_price')
+    def _gross_price_update(self):
+        for record in self:
+            record.list_price = record.gross_price * record.sales_factor.factor
             
     def _cal_update_all_list_price(self):
         products = self.env['product.template'].search([('type','=','product')])
