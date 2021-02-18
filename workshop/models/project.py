@@ -7,9 +7,9 @@ from odoo.exceptions import UserError
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    order_line = fields.One2many('project.task.work.order.parts', 'order_id', string='Parts', domain="[('product_type', '=', 'product')]")
-    expense_order_line = fields.One2many('project.task.work.order.expenses', 'order_id', string='Travel Expenses', domain="[('product_type', '=', 'service'), ('product_category','ilike','expenses')]")
-    lubricant_order_line = fields.One2many('project.task.work.order.lubricant', 'order_id', string='Lubricants', domain="[('product_type', '=', 'product')]")
+    order_line = fields.One2many('project.task.work.order.lines', 'order_id', string='Parts', domain="[('product_type', '=', 'product')]")
+    expense_order_line = fields.One2many('project.task.work.order.lines', 'order_id', string='Travel Expenses', domain="[('product_type', '=', 'service'), ('product_category','ilike','expenses')]")
+    lubricant_order_line = fields.One2many('project.task.work.order.lines', 'order_id', string='Lubricants', domain="[('product_type', '=', 'product')]")
     service_id = fields.Many2one('workshop.vehicle.log.services', 'Service')
     vehicle_id = fields.Many2one('workshop.vehicle', related='service_id.vehicle_id', string='Vehicle') 
     computer_programming = fields.Many2one('product.product', domain=[('type', '=', 'service'), ('default_code', '=', 'comp_prog')])
@@ -111,16 +111,15 @@ class ProjectTask(models.Model):
         return True
 
 
-class ProjectTaskWorkOrderParts(models.Model):
-    _name = 'project.task.work.order.parts'
-    _description = 'Work Order Parts'
+class ProjectTaskWorkOrderLines(models.Model):
+    _name = 'project.task.work.order.lines'
 
     order_id = fields.Many2one('project.task', string='Order Reference')
     sequence = fields.Integer(string='Sequence', default=10)
     display_type = fields.Selection([
         ('line_section', "Section"),
         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product')
+    product_id = fields.Many2one('product.product', 'Product', required=True)
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Quantity')
     product_type = fields.Char()
@@ -155,92 +154,92 @@ class ProjectTaskWorkOrderParts(models.Model):
                 sale_line.unlink()
         return super(ProjectTaskWorkOrderParts, self).unlink()
     
-class ProjectTaskWorkOrderExpenses(models.Model):
-    _name = 'project.task.work.order.expenses'
-    _description = 'Work Order Expenses'
-
-    order_id = fields.Many2one('project.task', string='Order Reference')
-    sequence = fields.Integer(string='Sequence', default=10)
-    display_type = fields.Selection([
-        ('line_section', "Section"),
-        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product', domain=[('type','=','service'), ('categ_id','ilike','expenses')])
-    name = fields.Char(related='product_id.name', string='Description')
-    quantity = fields.Integer('Quantity')
-    product_type = fields.Char()
-    product_category = fields.Many2one('product.category', related='product_id.categ_id')
-    price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
-    product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
-    external_id = fields.Char()
+# class ProjectTaskWorkOrderExpenses(models.Model):
+#     _name = 'project.task.work.order.expenses'
+#     _description = 'Work Order Expenses'
+#
+#     order_id = fields.Many2one('project.task', string='Order Reference')
+#     sequence = fields.Integer(string='Sequence', default=10)
+#     display_type = fields.Selection([
+#         ('line_section', "Section"),
+#         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+#     product_id = fields.Many2one('product.product', 'Product', required=True, domain=[('type','=','service'), ('categ_id','ilike','expenses')])
+#     name = fields.Char(related='product_id.name', string='Description')
+#     quantity = fields.Integer('Quantity')
+#     product_type = fields.Char()
+#     product_category = fields.Many2one('product.category', related='product_id.categ_id')
+#     price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
+#     product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
+#     external_id = fields.Char()
+#
+#     @api.model
+#     def create(self, vals):
+#         task = self.env['project.task'].browse(vals['order_id'])
+#         if task.sale_order_id:
+#             SaleOrderLine = self.env['sale.order.line']
+# #             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
+# #             if sale_line:
+#             value = {
+#                 'order_id': task.sale_order_id.id,
+#                 'sequence': vals['sequence'],
+#                 'product_id': vals['product_id'],
+#                 'product_uom_qty': vals['quantity'],
+#                 'price_unit': vals['price_unit']
+#             }
+#             sale_line = SaleOrderLine.create(value)
+#             vals['external_id'] = sale_line.id
+#         result = super(ProjectTaskWorkOrderExpenses, self).create(vals)
+#         return result
+#
+#     def unlink(self):
+#         SaleOrderLine = self.env['sale.order.line']
+#         for order_line in self:
+#             if order_line.external_id:
+#                 sale_line = SaleOrderLine.search([('id', '=', order_line.external_id)])
+#                 sale_line.unlink()
+#         return super(ProjectTaskWorkOrderExpenses, self).unlink()
     
-    @api.model
-    def create(self, vals):
-        task = self.env['project.task'].browse(vals['order_id'])
-        if task.sale_order_id:
-            SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
-            value = {
-                'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
-                'product_id': vals['product_id'],
-                'product_uom_qty': vals['quantity'],
-                'price_unit': vals['price_unit']
-            }
-            sale_line = SaleOrderLine.create(value)
-            vals['external_id'] = sale_line.id
-        result = super(ProjectTaskWorkOrderExpenses, self).create(vals)
-        return result
-
-    def unlink(self):
-        SaleOrderLine = self.env['sale.order.line']
-        for order_line in self:
-            if order_line.external_id:
-                sale_line = SaleOrderLine.search([('id', '=', order_line.external_id)])
-                sale_line.unlink()
-        return super(ProjectTaskWorkOrderExpenses, self).unlink()
-    
-class ProjectTaskWorkOrderLubricant(models.Model):
-    _name = 'project.task.work.order.lubricant'
-    _description = 'Work Order Expenses'
-
-    order_id = fields.Many2one('project.task', string='Order Reference')
-    sequence = fields.Integer(string='Sequence', default=10)
-    display_type = fields.Selection([
-        ('line_section', "Section"),
-        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product', domain=[('type','=','product'), ('categ_id','ilike','workshop')])
-    name = fields.Char(related='product_id.name', string='Description')
-    quantity = fields.Integer('Liters')
-    product_type = fields.Char()
-    product_category = fields.Many2one('product.category', related='product_id.categ_id')
-    price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
-    product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
-    external_id = fields.Char()
-    
-    @api.model
-    def create(self, vals):
-        task = self.env['project.task'].browse(vals['order_id'])
-        if task.sale_order_id:
-            SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
-            value = {
-                'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
-                'product_id': vals['product_id'],
-                'product_uom_qty': vals['quantity'],
-                'price_unit': vals['price_unit']
-            }
-            sale_line = SaleOrderLine.create(value)
-            vals['external_id'] = sale_line.id
-        result = super(ProjectTaskWorkOrderLubricant, self).create(vals)
-        return result
-
-    def unlink(self):
-        SaleOrderLine = self.env['sale.order.line']
-        for order_line in self:
-            if order_line.external_id:
-                sale_line = SaleOrderLine.search([('id', '=', order_line.external_id)])
-                sale_line.unlink()
-        return super(ProjectTaskWorkOrderLubricant, self).unlink()
+# class ProjectTaskWorkOrderLubricant(models.Model):
+#     _name = 'project.task.work.order.lubricant'
+#     _description = 'Work Order Expenses'
+#
+#     order_id = fields.Many2one('project.task', string='Order Reference')
+#     sequence = fields.Integer(string='Sequence', default=10)
+#     display_type = fields.Selection([
+#         ('line_section', "Section"),
+#         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+#     product_id = fields.Many2one('product.product', 'Product', required=True, domain=[('type','=','product'), ('categ_id','ilike','workshop')])
+#     name = fields.Char(related='product_id.name', string='Description')
+#     quantity = fields.Integer('Liters')
+#     product_type = fields.Char()
+#     product_category = fields.Many2one('product.category', related='product_id.categ_id')
+#     price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
+#     product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
+#     external_id = fields.Char()
+#
+#     @api.model
+#     def create(self, vals):
+#         task = self.env['project.task'].browse(vals['order_id'])
+#         if task.sale_order_id:
+#             SaleOrderLine = self.env['sale.order.line']
+# #             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
+# #             if sale_line:
+#             value = {
+#                 'order_id': task.sale_order_id.id,
+#                 'sequence': vals['sequence'],
+#                 'product_id': vals['product_id'],
+#                 'product_uom_qty': vals['quantity'],
+#                 'price_unit': vals['price_unit']
+#             }
+#             sale_line = SaleOrderLine.create(value)
+#             vals['external_id'] = sale_line.id
+#         result = super(ProjectTaskWorkOrderLubricant, self).create(vals)
+#         return result
+#
+#     def unlink(self):
+#         SaleOrderLine = self.env['sale.order.line']
+#         for order_line in self:
+#             if order_line.external_id:
+#                 sale_line = SaleOrderLine.search([('id', '=', order_line.external_id)])
+#                 sale_line.unlink()
+#         return super(ProjectTaskWorkOrderLubricant, self).unlink()
