@@ -88,7 +88,7 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
             sale_order_line = self.env['sale.order.line'].create({
                 'order_id': sale_order.id,
                 'product_id': expenses_item.product_id.id,
-                'price_unit': expenses_item.price_unit,
+#                 'price_unit': expenses_item.price_unit,
                 'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
                 'task_id': task_id.id,
                 'product_uom_qty': expenses_item.quantity,
@@ -109,7 +109,7 @@ class ProjectCreateSalesOrderInherit(models.TransientModel):
             sale_order_line = self.env['sale.order.line'].create({
                 'order_id': sale_order.id,
                 'product_id': lubricant_item.product_id.id,
-                'price_unit': lubricant_item.price_unit,
+#                 'price_unit': lubricant_item.price_unit,
                 'project_id': task_id.project_id.id,  # prevent to re-create a project on confirmation
                 'task_id': task_id.id,
                 'product_uom_qty': lubricant_item.quantity,
