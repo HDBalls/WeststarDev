@@ -57,6 +57,7 @@
                             <tree
                                     string="Parts"
                                     editable="bottom"
+                                    attributes="[('type','=','service'), ('categ_id','ilike','expenses')]"
                                 >
                                     <field name="sequence" widget="handle"/>
                                     <field name="product_id" context="{'order_id':parent.id}" domain="[['type','=','product']]"/>
@@ -84,7 +85,6 @@
                                     />
                                     <field name="name" widget="section_and_note_text" optional="show"/>
                                     <field name="quantity"/>
-                                    <field name="price_unit"/>
                                     <field name="product_type" invisible="1"/>
                                     <field name="product_category" invisible="1"/>
                             </tree>
@@ -106,7 +106,6 @@
                                     />
                                     <field name="name" widget="section_and_note_text" optional="show"/>
                                     <field name="quantity"/>
-                                    <field name="price_unit"/>
                                     <field name="product_type" invisible="1"/>
                                     <field name="product_category" invisible="1"/>
                             </tree>

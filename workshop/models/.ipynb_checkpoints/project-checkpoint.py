@@ -33,8 +33,32 @@ class ProjectTask(models.Model):
         
 #         result = super(ProjectTask, self).create(vals)
 #         return result
+        
+    @api.onchange('computer_programming')
+    def computer_programming_update(self):
+        if self.sale_order_id:
+            SaleOrderLine = self.env['sale.order.line']
             
-            
+            comp_prog = SaleOrderLine.search([('order_id', '=', self.sale_order_id.id),('product_id.type', '=', 'service'), 
+                                              ('product_id.default_code', '=', 'comp_prog')], limit = 1)
+#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
+#             if sale_line:
+            if comp_prog:
+                if not comp_prog.product_id.id == self.computer_programming.id:
+#                     value = {
+#                         'order_id': self.sale_order_id.id,
+#                         'sequence': comp_prog.sequence,
+#                         'product_id': self.computer_programming.id
+#                     }
+#                     comp_prog.unlink()
+#                     sale_line = SaleOrderLine.create(value)
+                    comp_prog.write({'product_id':self.computer_programming.id})
+            else:
+                value = {
+                    'order_id': self.sale_order_id.id,
+                    'product_id': self.computer_programming.id
+                }
+                sale_line = SaleOrderLine.create(value)
     
     def action_update_sales_order(self):
         task_id = self.env.context.get('fsm_task_id')
@@ -80,15 +104,15 @@ class ProjectTask(models.Model):
 
                     sale_line = SaleOrderLine.create(vals)
 
-#             sale_line = SaleOrderLine.search([('order_id', '=', task.sale_order_id.id), ('product_id', '=', self.order_line.product_id)], limit=1)
+            sale_line = SaleOrderLine.search([('order_id', '=', task.sale_order_id.id), ('product_id', '=', self.order_line.product_id)], limit=1)
 
-#             if sale_line:  # existing line: increment ordered qty (and delivered, if delivered method)
-#                 vals = {
-#                     'product_uom_qty': self.order_line.quantity
-#                 }
-#                 if sale_line.qty_delivered_method == 'manual':
-#                     vals['qty_delivered'] = self.order_line.quantity
-#                 sale_line.with_context(fsm_no_message_post=True).write(vals)
+            if sale_line:  # existing line: increment ordered qty (and delivered, if delivered method)
+                vals = {
+                    'product_uom_qty': self.order_line.quantity
+                }
+                if sale_line.qty_delivered_method == 'manual':
+                    vals['qty_delivered'] = self.order_line.quantity
+                sale_line.with_context(fsm_no_message_post=True).write(vals)
 #             else:  # create new SOL
 #                 vals = {
 #                     'order_id': task.sale_order_id.id,
@@ -110,17 +134,19 @@ class ProjectTask(models.Model):
 
         return True
 
+class ProjectTaskWordOrderLines(models.Model):
+    _name = 'project.task.work.order.lines'
+    
 
 class ProjectTaskWorkOrderParts(models.Model):
     _name = 'project.task.work.order.parts'
-    _description = 'Work Order Parts'
 
     order_id = fields.Many2one('project.task', string='Order Reference')
     sequence = fields.Integer(string='Sequence', default=10)
     display_type = fields.Selection([
         ('line_section', "Section"),
         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product')
+    product_id = fields.Many2one('product.product', 'Product', required=True)
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Quantity')
     product_type = fields.Char()
@@ -133,12 +159,16 @@ class ProjectTaskWorkOrderParts(models.Model):
     def create(self, vals):
         task = self.env['project.task'].browse(vals['order_id'])
         if task.sale_order_id:
+            sequence = vals['sequence']
             SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
+            last_record = SaleOrderLine.search([('product_id.categ_id', 'ilike', 'Part')], limit=1, order='id desc')
+            
+            if last_record:
+                sequence = last_record.sequence
+                
             value = {
                 'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
+                'sequence': sequence,
                 'product_id': vals['product_id'],
                 'product_uom_qty': vals['quantity'],
             }
@@ -164,7 +194,7 @@ class ProjectTaskWorkOrderExpenses(models.Model):
     display_type = fields.Selection([
         ('line_section', "Section"),
         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product', domain=[('type','=','service'), ('categ_id','ilike','expenses')])
+    product_id = fields.Many2one('product.product', 'Product', required=True, domain=[('type','=','service'), ('categ_id','ilike','expenses')])
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Quantity')
     product_type = fields.Char()
@@ -172,20 +202,23 @@ class ProjectTaskWorkOrderExpenses(models.Model):
     price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
     product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
     external_id = fields.Char()
-    
+
     @api.model
     def create(self, vals):
         task = self.env['project.task'].browse(vals['order_id'])
         if task.sale_order_id:
+            sequence = vals['sequence']
             SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
+            last_record = SaleOrderLine.search([('product_id.categ_id', 'ilike', 'Expense')], limit=1, order='id desc')
+            
+            if last_record:
+                sequence = last_record.sequence
+
             value = {
                 'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
+                'sequence': sequence,
                 'product_id': vals['product_id'],
-                'product_uom_qty': vals['quantity'],
-                'price_unit': vals['price_unit']
+                'product_uom_qty': vals['quantity']
             }
             sale_line = SaleOrderLine.create(value)
             vals['external_id'] = sale_line.id
@@ -209,7 +242,7 @@ class ProjectTaskWorkOrderLubricant(models.Model):
     display_type = fields.Selection([
         ('line_section', "Section"),
         ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
-    product_id = fields.Many2one('product.product', 'Product', domain=[('type','=','product'), ('categ_id','ilike','workshop')])
+    product_id = fields.Many2one('product.product', 'Product', required=True, domain=[('type','=','product'), ('categ_id','ilike','workshop')])
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Liters')
     product_type = fields.Char()
@@ -217,20 +250,23 @@ class ProjectTaskWorkOrderLubricant(models.Model):
     price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
     product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
     external_id = fields.Char()
-    
+
     @api.model
     def create(self, vals):
         task = self.env['project.task'].browse(vals['order_id'])
         if task.sale_order_id:
+            sequence = vals['sequence']
             SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
+            last_record = SaleOrderLine.search([('product_id.categ_id', 'ilike', 'workshop')], limit=1, order='id desc')
+            
+            if last_record:
+                sequence = last_record.sequence
+                
             value = {
                 'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
+                'sequence': sequence,
                 'product_id': vals['product_id'],
-                'product_uom_qty': vals['quantity'],
-                'price_unit': vals['price_unit']
+                'product_uom_qty': vals['quantity']
             }
             sale_line = SaleOrderLine.create(value)
             vals['external_id'] = sale_line.id

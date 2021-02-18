@@ -190,7 +190,7 @@
                                     <t t-if="not (line.name == 'Extra' or line.product_id.categ_id.name == 'All')">
                                         <tr t-att-class="'table-cell font-weight-bold' if (line.display_type == 'line_section' and (line.name == 'Labour' or line.name == 'Parts')) else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                                             <t t-if="not line.display_type">
-                                                <td name="td_sequence" t-if="line.product_id.categ_id.name == 'Parts Item' or line.product_id.categ_id.name== 'Services Item'" class="border border-secondary text-center">
+                                                <td name="td_sequence" t-if="line.product_id.categ_id.name == 'Parts Item' or line.product_id.categ_id.name== 'Service Item'" class="border border-secondary text-center">
                                                     <span t-esc="start+1"/>
                                                 </td>
                                                 <td name="td_sequence" t-else="">
@@ -201,11 +201,11 @@
                                                     t-if="line.product_id.categ_id.name == 'Parts Item'">
                                                     <span t-field="line.product_id.default_code"/>
                                                 </td>
-                                                <td name="td_internal_reference" t-elif="not (line.product_id.categ_id.name == 'Services Item')">
+                                                <td name="td_internal_reference" t-elif="not (line.product_id.categ_id.name == 'Service Item')">
                                                     <span></span>
                                                 </td>
                                                 <td class="border border-dark text-center" name="td_name" 
-                                                    t-att-colspan="'6' if line.product_id.categ_id.name == 'Services Item' else '5'">
+                                                    t-att-colspan="'6' if line.product_id.categ_id.name == 'Service Item' else '5'">
                                                     <span t-field="line.product_id.name"/>
                                                 </td>
 <!--                                                 <td><nobr></nobr></td>
@@ -328,8 +328,8 @@
                                     <span><b>Labour</b></span>
                                 </td>
                                 <td class="border border-right-2 border-dark">
-                                    <t t-if="'Services Item' in total(o.id)">
-                                        <t t-set="labour_total" t-value="total(o.id)['Services Item']"/>
+                                    <t t-if="'Service Item' in total(o.id)">
+                                        <t t-set="labour_total" t-value="total(o.id)['Service Item']"/>
                                     </t>
                                     <t t-else="">
                                         <t t-set="labour_total" t-value="0.00"/>

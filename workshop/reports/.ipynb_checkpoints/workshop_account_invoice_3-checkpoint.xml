@@ -106,8 +106,8 @@
                                 <td colspan="3"></td>
                                 <td colspan="2"><strong>Total Labour</strong></td>
                                 <td>
-                                    <t t-if="'Services Item' in total(o.id)">
-                                        <t t-set="labour_total" t-value="total(o.id)['Services Item']"/>
+                                    <t t-if="'Service Item' in total(o.id)">
+                                        <t t-set="labour_total" t-value="total(o.id)['Service Item']"/>
                                     </t>
                                     <t t-else="">
                                         <t t-set="labour_total" t-value="0.00"/>
