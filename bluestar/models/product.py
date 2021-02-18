@@ -69,3 +69,8 @@ class Product(models.Model):
           if product.sales_factor:
             list_price = product.gross_price * product.sales_factor.factor
             product.write({'list_price': list_price})
+
+    def _cal_update_gross_price_from_standard_price(self):
+        products = self.env['product.template'].search([('type','=','product')])
+        for product in products:
+            product.write({'gross_price': product.standard_price})
