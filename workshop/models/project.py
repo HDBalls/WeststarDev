@@ -104,15 +104,15 @@ class ProjectTask(models.Model):
 
                     sale_line = SaleOrderLine.create(vals)
 
-#             sale_line = SaleOrderLine.search([('order_id', '=', task.sale_order_id.id), ('product_id', '=', self.order_line.product_id)], limit=1)
+            sale_line = SaleOrderLine.search([('order_id', '=', task.sale_order_id.id), ('product_id', '=', self.order_line.product_id)], limit=1)
 
-#             if sale_line:  # existing line: increment ordered qty (and delivered, if delivered method)
-#                 vals = {
-#                     'product_uom_qty': self.order_line.quantity
-#                 }
-#                 if sale_line.qty_delivered_method == 'manual':
-#                     vals['qty_delivered'] = self.order_line.quantity
-#                 sale_line.with_context(fsm_no_message_post=True).write(vals)
+            if sale_line:  # existing line: increment ordered qty (and delivered, if delivered method)
+                vals = {
+                    'product_uom_qty': self.order_line.quantity
+                }
+                if sale_line.qty_delivered_method == 'manual':
+                    vals['qty_delivered'] = self.order_line.quantity
+                sale_line.with_context(fsm_no_message_post=True).write(vals)
 #             else:  # create new SOL
 #                 vals = {
 #                     'order_id': task.sale_order_id.id,
@@ -159,12 +159,16 @@ class ProjectTaskWorkOrderParts(models.Model):
     def create(self, vals):
         task = self.env['project.task'].browse(vals['order_id'])
         if task.sale_order_id:
+            sequence = vals['sequence']
             SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
+            last_record = SaleOrderLine.search([('product_id.categ_id', 'ilike', 'Part')], limit=1, order='id desc')
+            
+            if last_record:
+                sequence = last_record.sequence
+                
             value = {
                 'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
+                'sequence': sequence,
                 'product_id': vals['product_id'],
                 'product_uom_qty': vals['quantity'],
             }
@@ -203,15 +207,18 @@ class ProjectTaskWorkOrderExpenses(models.Model):
     def create(self, vals):
         task = self.env['project.task'].browse(vals['order_id'])
         if task.sale_order_id:
+            sequence = vals['sequence']
             SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
+            last_record = SaleOrderLine.search([('product_id.categ_id', 'ilike', 'Expense')], limit=1, order='id desc')
+            
+            if last_record:
+                sequence = last_record.sequence
+
             value = {
                 'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
+                'sequence': sequence,
                 'product_id': vals['product_id'],
-                'product_uom_qty': vals['quantity'],
-                'price_unit': vals['price_unit']
+                'product_uom_qty': vals['quantity']
             }
             sale_line = SaleOrderLine.create(value)
             vals['external_id'] = sale_line.id
@@ -248,15 +255,18 @@ class ProjectTaskWorkOrderLubricant(models.Model):
     def create(self, vals):
         task = self.env['project.task'].browse(vals['order_id'])
         if task.sale_order_id:
+            sequence = vals['sequence']
             SaleOrderLine = self.env['sale.order.line']
-#             sale_line = SaleOrderLine.search[('display_type', '=', 'line_section'), ('name', '=', 'Parts')]
-#             if sale_line:
+            last_record = SaleOrderLine.search([('product_id.categ_id', 'ilike', 'workshop')], limit=1, order='id desc')
+            
+            if last_record:
+                sequence = last_record.sequence
+                
             value = {
                 'order_id': task.sale_order_id.id,
-                'sequence': vals['sequence'],
+                'sequence': sequence,
                 'product_id': vals['product_id'],
-                'product_uom_qty': vals['quantity'],
-                'price_unit': vals['price_unit']
+                'product_uom_qty': vals['quantity']
             }
             sale_line = SaleOrderLine.create(value)
             vals['external_id'] = sale_line.id
