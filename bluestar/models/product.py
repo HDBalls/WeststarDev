@@ -46,7 +46,7 @@ class Product(models.Model):
     # factor_id = fields.Many2one('market.market_code', 'Market Code', tracking=True, help='Get the products market code', copy=False)
     sales_factor = fields.Many2one('product.template.sales.factor', related='market_code.factor_id', string='Sales Factor', tracking=True)
     market_code = fields.Many2one('product.template.market.code', 'Market Code', tracking=True)
-    gross_price = fields.Float('Gross Cost Price')
+    gross_price = fields.Monetary('BLP', help='Gross Cost Price')
     # list_price: catalog price, user defined
 #     list_price = fields.Float(
 #         'Sales Price', default=1.0,
