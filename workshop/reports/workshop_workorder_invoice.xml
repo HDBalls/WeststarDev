@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="workshop_workorder_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <style>
+
+                            td {
+                                min-width: 100px !important;
+                                height:20px
+                            }
+                            .border-thick{
+                                border-width:thick
+                            }
+                            .border-2{
+                                border:2px solid !important
+                            }
+                            .border-left-2{
+                                border-left:2px solid !important
+                            }
+                            .border-right-2{
+                                border-right:2px solid !important
+                            }
+                            .border-top-2{
+                                border-top:2px solid !important
+                            }
+                            .border-bottom-2{
+                                border-bottom:2px solid !important
+                            }
+                            .table-cell{
+                                background-color:#c0c0c0 !important;
+                            }
+                        </style>
+                        <table class="table table-sm" cellspacing="0" style="border:2px solid #000 !important">
+                            <tr style="height:25px;">
+                                <td>Name:</td>
+                                <td colspan="4">
+                                    <span t-field="o.partner_id.name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Address:</td>
+                                <td colspan="4" rowspan="4">
+                                    <span t-field="o.partner_id.contact_address"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td colspan="4">
+                                    <span t-field="o.partner_id.email"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Telephone:</td>
+                                <td colspan="4">
+                                    <span t-field="o.partner_id.phone"/>
+                                </td>
+                                <td class="text-center">Make</td>
+                                <td colspan="5" rowspan="2" class="text-center">
+                                    <strong>Repair - Order No:</strong>
+                                </td>
+                                <td colspan="2" rowspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td>
+                                    <span t-field="o.vehicle_id.model_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" class="text-center">Routing No.</td>
+                                <td colspan="2" class="text-center">Reg No.</td>
+                                <td rowspan="2"></td>
+                                <td class="text-center">Ist Reg. Date</td>
+                                <td class="text-center">Model</td>
+                                <td colspan="4" class="text-center">Chasis No. (VIN)</td>
+                                <td colspan="3" class="text-center">Km.</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="4"></td>
+                                <td colspan="3"></td>
+                            </tr>
+
+                            <tr>
+<!--                                <td rowspan="4" class="text-center">Routing No.</td>-->
+                                <td colspan="2" class="text-center">Received on / at</td>
+                                <td rowspan="2"></td>
+                                <td class="text-center">Received By</td>
+                                <td class="text-center">Brought in by</td>
+                                <td colspan="4" class="text-center">Engine No.</td>
+                                <td colspan="3" class="text-center">Deadline</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="4"></td>
+                                <td colspan="3"></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="2" class="text-center"></td>
+                                <td colspan="2" class="text-center">Reference Number</td>
+                                <td rowspan="2"></td>
+                                <td class="text-center">Warranty regulation is fufilled   Yes    No</td>
+                                <td class="text-center">Date of last service</td>
+                                <td colspan="2" class="text-center">Coolant</td>
+                                <td colspan="2" class="text-center">Fuel</td>
+                                <td colspan="3" class="text-center">Accounts Information</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                                <td colspan="2"></td>
+                                <td colspan="3"></td>
+                            </tr>
+<!--                        </table>-->
+
+<!--                        <table>-->
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Operation / Line No.</th>
+                                    <th>Code</th>
+                                    <th colspan="6">Type of Work</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.cost_ids" t-as="line">
+                                    <tr>
+                                        <td></td>
+                                        <td><span t-field="line.operation_type" /></td>
+                                        <td><span t-field="line.code" /></td>
+                                        <td colspan="6"><span t-field="line.description" /></td>
+                                        <td><span t-field="line.amount" /></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
