@@ -14,7 +14,7 @@ class WorkshopVehicleCost(models.Model):
     _order = 'date desc, vehicle_id asc'
 
     name = fields.Char(related='vehicle_id.name', string='Name', store=True, readonly=False)
-    code = fields.Char(store=True, readonly=True)
+    code = fields.Char(store=True, readonly=False)
     owner_id = fields.Many2one('res.partner', related='vehicle_id.driver_id', string='Owner', store=True, readonly=True)
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True, help='Vehicle concerned by this log')
     cost_subtype_id = fields.Many2one('workshop.service.type', 'Type', help='Cost type purchased with this cost')

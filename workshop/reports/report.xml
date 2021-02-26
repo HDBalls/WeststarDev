@@ -29,4 +29,13 @@
         file="workshop.workshop_account_invoice_2"
         attachment_use="True"
     />
+    <report
+        id="workshop_workorder_report"
+        model="workshop.vehicle.log.services"
+        string="JobCard Document"
+        report_type="qweb-pdf"
+        name="workshop.workshop_workorder_invoice"
+        file="workshop.workshop_workorder_invoice"
+        attachment_use="False"
+    />
 </odoo>
