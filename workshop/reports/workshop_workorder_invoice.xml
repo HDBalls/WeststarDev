@@ -8,8 +8,8 @@
                         <style>
 
                             td {
-                                min-width: 100px !important;
-                                height:20px
+                                white-space: nowrap;
+                                height:25px
                             }
                             .border-thick{
                                 border-width:thick
@@ -33,8 +33,23 @@
                                 background-color:#c0c0c0 !important;
                             }
                         </style>
-                        <table class="table table-sm" cellspacing="0" style="border:2px solid #000 !important">
-                            <colgroup width="86"></colgroup>
+                        <table class="table table-sm table-borderless" cellspacing="0" style="border:2px solid #000 !important">
+                            <colgroup>
+                                <col style="width:40%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:100%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                                <col style="width:30%"></col>
+                            </colgroup>
+<!--                             <colgroup width="86"></colgroup>
                             <colgroup width="88"></colgroup>
                             <colgroup width="98"></colgroup>
                             <colgroup width="57"></colgroup>
@@ -44,13 +59,15 @@
                             <colgroup width="57"></colgroup>
                             <colgroup width="66"></colgroup>
                             <colgroup width="100"></colgroup>
-                            <colgroup width="32"></colgroup>
+                            <colgroup width="32"></colgroup> -->
                             <tr>
                                 <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="20" align="left"><font color="#000000"><br/></font></td>
                                 <td style="border-top: 2px solid #000000" align="left"><font color="#000000"><br/></font></td>
                                 <td style="border-top: 2px solid #000000" align="left"><font color="#000000"><br/></font></td>
+                                <td style="border-top: 2px solid #000000;" align="left"><font color="#000000"><br/></font></td>
                                 <td style="border-top: 2px solid #000000" align="left"><font color="#000000"><br/></font></td>
-                                <td style="border-top: 2px solid #000000" colspan="3" rowspan="4" align="left"><font color="#000000"><br/>
+                                <td style="border-top: 2px solid #000000;" align="left"><font color="#000000"><br/></font></td>
+                                <td style="border-top: 2px solid #000000" colspan="1" rowspan="4" align="left"><font color="#000000"><br/>
                                 </font></td>
                                 <td style="border-top: 2px solid #000000" align="left"><font color="#000000"><br/></font></td>
                                 <td style="border-top: 2px solid #000000" align="left"><font color="#000000"><br/></font></td>
@@ -61,14 +78,14 @@
                             </tr>
                             <tr style="height:25px;">
                                 <td>Name:</td>
-                                <td colspan="4">
+                                <td colspan="4" class="border-bottom border-dark">
                                     <span t-field="o.owner_id.name" />
                                 </td>
-                                
+
                             </tr>
                             <tr>
                                 <td>Address:</td>
-                                <td colspan="4" rowspan="4">
+                                <td colspan="4" rowspan="4" class="border-bottom border-dark">
                                     <span t-field="o.owner_id.contact_address"/>
                                 </td>
                             </tr>
@@ -77,31 +94,31 @@
                             <tr><td></td></tr>
                             <tr>
                                 <td>Email:</td>
-                                <td colspan="4">
+                                <td colspan="4" class="border-bottom border-dark">
                                     <span t-field="o.owner_id.email"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Telephone:</td>
-                                <td colspan="4">
+                                <td colspan="4" class="border-bottom border-dark">
                                     <span t-field="o.owner_id.phone"/>
                                 </td>
-                                <td class="text-center">Make</td>
-                                <td colspan="5" rowspan="2" class="text-center border border-dark border-2">
+                                <td class="border border-dark border-1 text-center">Make</td>
+                                <td colspan="5" rowspan="2" class="text-center border-top border-bottom border-left border-dark border-1">
                                     <strong>Repair - Order No:</strong>
                                 </td>
-                                <td colspan="2" rowspan="2" class="border border-dark border-1"></td>
+                                <td colspan="2" rowspan="2" class="border-top border-bottom border-dark"></td>
                             </tr>
                             <tr>
                                 <td colspan="5"></td>
-                                <td>
+                                <td class="border border-dark border-1">
                                     <span t-field="o.vehicle_id.model_id"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td rowspan="4" class="border-top border-left border-dark border-1 text-center">Routing No.</td>
+                                <td rowspan="4" class="border-top border-bottom border-left border-dark border-1 text-center">Routing No.</td>
                                 <td colspan="2" class="border-top border-left border-dark border-1 text-center">Reg No.</td>
-                                <td class="border-top border-left border-dark border-1" rowspan="2"></td>
+                                <td class="border border-dark" rowspan="2"></td>
                                 <td class="border-top border-left border-dark border-1 text-center">Ist Reg. Date</td>
                                 <td class="border-top border-left border-dark border-1 text-center">Model</td>
                                 <td colspan="4" class="border-top border-left border-dark border-1 text-center">Chasis No. (VIN)</td>
@@ -117,61 +134,149 @@
 
                             <tr>
 <!--                                <td rowspan="4" class="text-center">Routing No.</td>-->
-                                <td colspan="2" class="text-center">Received on / at</td>
-                                <td rowspan="2"></td>
-                                <td class="text-center">Received By</td>
-                                <td class="text-center">Brought in by</td>
-                                <td colspan="4" class="text-center">Engine No.</td>
-                                <td colspan="3" class="text-center">Deadline</td>
+                                <td colspan="2" class="border-top border-left border-dark text-center">Received on / at</td>
+                                <td rowspan="2" class="border border-dark"></td>
+                                <td class="border-top border-left border-dark border-1 text-center">Received By</td>
+                                <td class="border-top border-left border-dark border-1 text-center">Brought in by</td>
+                                <td colspan="4" class="border-top border-left border-dark text-center">Engine No.</td>
+                                <td colspan="3" class="border-top border-left border-dark text-center">Deadline</td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="4"></td>
-                                <td colspan="3"></td>
+                                <td colspan="2" class="border-bottom border-left border-dark"></td>
+                                <td class="border-bottom border-left border-dark border-1"></td>
+                                <td class="border-bottom border-left border-dark border-1"></td>
+                                <td colspan="4" class="border-bottom border-left border-dark"></td>
+                                <td colspan="3" class="border-bottom border-left border-dark"></td>
                             </tr>
 
                             <tr>
                                 <td rowspan="2" class="text-center"></td>
-                                <td colspan="2" class="text-center">Reference Number</td>
-                                <td rowspan="2"></td>
-                                <td class="text-center" width="231">Warranty regulation is fufilled   Yes    No</td>
-                                <td class="text-center">Date of last service</td>
-                                <td colspan="2" class="text-center">Coolant</td>
-                                <td colspan="2" class="text-center">Fuel</td>
-                                <td colspan="3" class="text-center">Accounts Information</td>
+                                <td colspan="2" class="border-top border-left border-dark border-1 text-center">Reference Number</td>
+                                <td class="border border-dark" rowspan="2"></td>
+                                <td class="border-top border-left border-dark border-1 text-center" width="100%">Warranty regulation is fufilled   Yes    No</td>
+                                <td class="border-top border-dark border-1 text-center">Date of last service</td>
+                                <td colspan="2" class="border-top border-left border-dark border-1 text-center">Coolant</td>
+                                <td colspan="2" class="border-top border-left border-dark border-1 text-center">Fuel</td>
+                                <td colspan="3" class="border-top border-left border-dark border-1 text-center">Accounts Information</td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="2"></td>
-                                <td colspan="2"></td>
-                                <td colspan="3"></td>
+                                <td colspan="2" class="border-bottom border-left border-dark border-1"></td>
+                                <td class="border-bottom border-left border-dark border-1"></td>
+                                <td class="border-bottom border-dark border-1"></td>
+                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>        Yes                  oc  No.                                                  No
+                                    </span></td>
+                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>0      1/4     1/2     3/4    Full
+</span></td>
+                                <td colspan="3" class="border-bottom border-left border-dark border-1"></td>
                             </tr>
-                       </table>
+<!--                        </table>
 
-                       <table>
-                            <thead>
-                                <tr>
-                                    <th>Item</th>
-                                    <th>Operation / Line No.</th>
-                                    <th>Code</th>
-                                    <th colspan="6">Type of Work</th>
-                                    <th>Amount</th>
-                                </tr>
-                            </thead>
+
+                       <table> -->
+<!--                             <thead> -->
+
+                            <tr>
+                                <td colspan="13" class="border-bottom-2" style="border-left:0px;border-right:0px"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="border-top-1 border-1 border-dark">Item</th>
+                                <th colspan="2" class="border-top-1 border-1 border-dark">Operation / Line No.</th>
+                                <th class="border-top-1 border-1 border-dark">Code</th>
+                                <th colspan="8" class="border-top-1 border-1 border-dark">Type of Work</th>
+                                <th class="border-top-1 border-1 border-dark">Amount</th>
+                            </tr>
+<!--                             </thead> -->
                             <tbody>
                                 <t t-foreach="o.cost_ids" t-as="line">
                                     <tr>
-                                        <td></td>
-                                        <td><span t-field="line.operation_type" /></td>
-                                        <td><span t-field="line.code" /></td>
-                                        <td colspan="6"><span t-field="line.description" /></td>
-                                        <td><span t-field="line.amount" /></td>
+                                        <td class="border border-dark"></td>
+                                        <td colspan="2" class="border border-dark"><span t-field="line.operation_type" /></td>
+                                        <td class="border border-dark"><span t-field="line.code" /></td>
+                                        <td colspan="8" class="border border-dark"><span t-field="line.description" /></td>
+                                        <td class="border border-dark"><span t-field="line.amount" /></td>
                                     </tr>
                                 </t>
+                                <tr>
+                                    <td colspan="8" class="border-top border-dark border-bottom-2 border-left-2"><span>Deposit Payments</span></td>
+                                    <td colspan="3" rowspan="2" class="border-top border-bottom border-left-2 border-dark"></td>
+                                    <td colspan="2" rowspan="2" class="border-left-2 border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="border-2 border-dark"><span>PREVIOUS SERVICE CARD RECORD</span></td>
+                                    <td colspan="3" class="border-top border-2 border-dark"><span>Sheet No ……………………………</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="border-2 border-dark"></td>
+                                    <td class="border-2 border-dark"></td>
+                                    <td class="border-2 border-dark"></td>
+                                    <td class="border-2 border-dark"></td>
+                                    <td colspan="3" class="border-bottom border-2 border-dark"><span>Recommendations</span></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Labour</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Spare - Parts</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>S / Supplies</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Towing</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Computer Programming</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Sub Total</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>V. A. T</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Grand Total</span></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
