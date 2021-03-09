@@ -163,7 +163,7 @@
                                 <td class="border-bottom border-left border-dark border-1"></td>
                                 <td class="border-bottom border-dark border-1"></td>
                                 <td colspan="2" class="border-bottom border-left border-dark border-1"><span class="col">Yes</span><span class="col">No</span></td>
-                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>0 &nbsp;&nbsp;1/4 &nbsp;&nbsp;1/2 &nbsp;&nbsp;3/4 &nbsp;&nbsp;Full</span></td>
+                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>0 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>1/4 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>1/2 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>3/4 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>Full</span></td>
                                 <td colspan="3" class="border-bottom border-left border-dark border-1"></td>
                             </tr>
 <!--                        </table>
