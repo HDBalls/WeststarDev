@@ -61,6 +61,9 @@
                                 <field name="odometer"/>
                                 <field name="odometer_unit"/>
                             </div>
+                            <field name="received_by"/>
+                            <field name="brought_in_by"/>
+                            <field name="date_deadline"/>
                         </group>
                     </group>
                     <group col="2">

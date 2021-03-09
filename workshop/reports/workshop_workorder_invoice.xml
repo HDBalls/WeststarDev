@@ -127,8 +127,8 @@
                                 <td class="border-bottom border-left border-dark border-1" colspan="2"></td>
                                 <td class="border-bottom border-left border-dark border-1"></td>
                                 <td class="border-bottom border-left border-dark border-1"></td>
-                                <td class="border-bottom border-left border-dark border-1" colspan="4"></td>
-                                <td class="border-bottom border-left border-dark border-1" colspan="3"></td>
+                                <td class="border-bottom border-left border-dark border-1" colspan="4"><span t-field="o.vehicle_id.vin_sn"/></td>
+                                <td class="border-bottom border-left border-dark border-1" colspan="3"><span t-field="o.odometer" /></td>
                             </tr>
 
                             <tr>
@@ -141,11 +141,11 @@
                                 <td colspan="3" class="border-top border-left border-dark text-center">Deadline</td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="border-bottom border-left border-dark"></td>
-                                <td class="border-bottom border-left border-dark border-1"></td>
-                                <td class="border-bottom border-left border-dark border-1"></td>
-                                <td colspan="4" class="border-bottom border-left border-dark"></td>
-                                <td colspan="3" class="border-bottom border-left border-dark"></td>
+                                <td colspan="2" class="border-bottom border-left border-dark"><span t-field="o.date_in" /></td>
+                                <td class="border-bottom border-left border-dark border-1"><span t-field="o.received_by" /></td>
+                                <td class="border-bottom border-left border-dark border-1"><span t-field="o.brought_in_by" /></td>
+                                <td colspan="4" class="border-bottom border-left border-dark"><span t-field="o.vehicle_id.engine_no" /></td>
+                                <td colspan="3" class="border-bottom border-left border-dark"><span t-field="o.date_deadline" /></td>
                             </tr>
 
                             <tr>
