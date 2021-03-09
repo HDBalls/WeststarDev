@@ -104,15 +104,15 @@
                                     <span t-field="o.owner_id.phone"/>
                                 </td>
                                 <td class="border border-dark border-1 text-center">Make</td>
-                                <td colspan="5" rowspan="2" class="text-center border-top border-bottom border-left border-dark border-1">
+                                <td colspan="5" style="line-height:50%" rowspan="2" class="text-center border-top border-bottom border-left border-dark border-1">
                                     <strong>Repair - Order No:</strong>
                                 </td>
-                                <td colspan="2" rowspan="2" class="border-top border-bottom border-dark"></td>
+                                <td colspan="2" rowspan="2" class="border-top border-bottom border-dark"><span t-field="o.name" /></td>
                             </tr>
                             <tr>
                                 <td colspan="5"></td>
                                 <td class="border border-dark border-1">
-                                    <span t-field="o.vehicle_id.model_id"/>
+                                    <span t-field="o.vehicle_id.model_id.name"/>
                                 </td>
                             </tr>
                             <tr>
@@ -125,11 +125,11 @@
                                 <td colspan="3" class="border-top border-left border-dark border-1 text-center">Km.</td>
                             </tr>
                             <tr>
-                                <td class="border-bottom border-left border-dark border-1" colspan="2"></td>
-                                <td class="border-bottom border-left border-dark border-1"></td>
-                                <td class="border-bottom border-left border-dark border-1"></td>
-                                <td class="border-bottom border-left border-dark border-1" colspan="4"></td>
-                                <td class="border-bottom border-left border-dark border-1" colspan="3"></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center" colspan="2"></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center"><span t-field="o.vehicle_id.acquisition_date" /></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center"><span t-field="o.vehicle_id.model_id.brand_id.name" /></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center" colspan="4"><span t-field="o.vehicle_id.vin_sn"/></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center" colspan="3"><span t-field="o.odometer" /></td>
                             </tr>
 
                             <tr>
@@ -142,11 +142,11 @@
                                 <td colspan="3" class="border-top border-left border-dark text-center">Deadline</td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="border-bottom border-left border-dark"></td>
-                                <td class="border-bottom border-left border-dark border-1"></td>
-                                <td class="border-bottom border-left border-dark border-1"></td>
-                                <td colspan="4" class="border-bottom border-left border-dark"></td>
-                                <td colspan="3" class="border-bottom border-left border-dark"></td>
+                                <td colspan="2" class="border-bottom border-left border-dark text-center"><span t-field="o.date_in" /></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center"><span t-field="o.received_by" /></td>
+                                <td class="border-bottom border-left border-dark border-1 text-center"><span t-field="o.brought_in_by" /></td>
+                                <td colspan="4" class="border-bottom border-left border-dark text-center"><span t-field="o.vehicle_id.engine_no" /></td>
+                                <td colspan="3" class="border-bottom border-left border-dark text-center"><span t-field="o.date_deadline" /></td>
                             </tr>
 
                             <tr>
@@ -163,10 +163,8 @@
                                 <td colspan="2" class="border-bottom border-left border-dark border-1"></td>
                                 <td class="border-bottom border-left border-dark border-1"></td>
                                 <td class="border-bottom border-dark border-1"></td>
-                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>        Yes                  oc  No.                                                  No
-                                    </span></td>
-                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>0      1/4     1/2     3/4    Full
-</span></td>
+                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span class="col">Yes</span><span class="col">No</span></td>
+                                <td colspan="2" class="border-bottom border-left border-dark border-1"><span>0 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>1/4 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>1/2 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>3/4 <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>Full</span></td>
                                 <td colspan="3" class="border-bottom border-left border-dark border-1"></td>
                             </tr>
 <!--                        </table>
