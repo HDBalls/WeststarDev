@@ -66,27 +66,27 @@ class SaleOrderLine(models.Model):
                 }
                 return {'warning': warning, 'value': value}
             
-    def write(self, values):
-        name = self.name
-        
-        if not self.order_id.approver_id:
-            raise UserError('Please select a Sales Approver!')
-            
-        approver_id = self.order_id.approver_id
-        product_id = self.product_id
-        
-        if 'DISCOUNT' in name.upper() and 'DISCOUNT' in product_id.categ_id.name.upper():
-            rows = re.findall('\d+%|([0-9]\d?)\.\d+%', self.product_id.name)
-            has_row = bool(rows)
-            discount = 0.00
-#             discount = (re.findall('[\d.]+', self.product_id.name))
-            if has_row:
-                discount = float(rows[0])
-    
-            if not discount <= approver_id.sale_order_discount_limit:
-                raise UserError(_('The specified Approver is not authorized to approve the discount of '+ str(discount) + \
-                                    '%. Kindly select another Approver!'))
-            
-        result = super(SaleOrderLine, self).write(values)
-        return result
+#     def write(self, values):
+#         name = self.name
+#
+#         if not self.order_id.approver_id:
+#             raise UserError('Please select a Sales Approver!')
+#
+#         approver_id = self.order_id.approver_id
+#         product_id = self.product_id
+#
+#         if 'DISCOUNT' in name.upper() and 'DISCOUNT' in product_id.categ_id.name.upper():
+#             rows = re.findall('\d+%|([0-9]\d?)\.\d+%', self.product_id.name)
+#             has_row = bool(rows)
+#             discount = 0.00
+# #             discount = (re.findall('[\d.]+', self.product_id.name))
+#             if has_row:
+#                 discount = float(rows[0])
+#
+#             if not discount <= approver_id.sale_order_discount_limit:
+#                 raise UserError(_('The specified Approver is not authorized to approve the discount of '+ str(discount) + \
+#                                     '%. Kindly select another Approver!'))
+#
+#         result = super(SaleOrderLine, self).write(values)
+#         return result
         

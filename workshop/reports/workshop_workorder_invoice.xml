@@ -3,10 +3,9 @@
     <template id="workshop_workorder_invoice">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-call="workshop.workshop_estimate_invoice_header_inherit_cr">
                     <div class="page">
                         <style>
-
                             td {
                                 white-space: nowrap;
                                 height:25px
