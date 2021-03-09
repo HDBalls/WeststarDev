@@ -107,9 +107,9 @@ class WorkshopVehicleLogServices(models.Model):
     date_in = fields.Date(help='The date the vehicle was brought into the workshop', store=True)
     date_out = fields.Date(help='The date the vehicle left the workshop', store=True)
     project_id = fields.Many2one('project.project', string='Nature Of Job', required=True, domain=[('name', 'in', ['In Workshop Service', 'Field Service'])])
-    received_by = fields.Many2one('res.user')
+    received_by = fields.Many2one('res.users')
     brought_in_by = fields.Many2one('res.partner')
-    date_deadline = fields.Date(string='Deadline', readonly=False)
+    date_deadline = fields.Date(string='Deadline', readonly=True)
 
     state = fields.Selection([
         ('pending', 'Pending'),
