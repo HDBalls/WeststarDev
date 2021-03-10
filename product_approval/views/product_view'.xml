@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record id="product_product_template_form_view_extend" model="ir.ui.view">
+        <field name="name">product.template.product.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[@name='Product Template']/sheet[1]/notebook[1]" position="inside">
+                <page name="alternative_products" string="Alternative Products">
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

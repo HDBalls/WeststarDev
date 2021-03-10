@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_swap_product_wizard" model="ir.ui.view">
+       <field name="name">swap.product.wizard.view</field>
+       <field name="model">swap.product.wizard</field>
+       <field name="type">form</field>
+       <field name="arch" type="xml">
+           <form>
+               <field name="optional_product_ids" widget="one2many_list">
+                   <tree string="Mrp production lines" editable="bottom">
+                       <field name="product_id" invisible="1"/>
+                       <field name="default_code"/>
+                       <field name="qty_available"/>
+                   </tree>
+               </field>
+               <footer>
+                   <button name="action_done" string="Confirm" type="object" class="oe_highlight"/>
+                   <button string="Cancel" class="btn btn-default" special="cancel"/>
+               </footer>
+           </form>
+       </field>
+    </record>
+    <record id='swap_product_action' model='ir.actions.act_window'>
+        <field name="name">Swap a product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">swap.product.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_swap_product_wizard"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

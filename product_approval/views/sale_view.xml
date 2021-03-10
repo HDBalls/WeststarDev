@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_order_form_extends" model="ir.ui.view">
+		<field name="name">sale.order.form</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <button name="%(product_approval.swap_product_action)d" string="Replace product" type="object" icon="fa fa-exchange fa-sm"
+                                            width="0.1"
+                                            options='{"warn": true}'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
