@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form[@name='Product Template']/sheet[1]/notebook[1]" position="inside">
                 <page name="alternative_products" string="Alternative Products">
-
+                    <field name="alt_product_ids" />
                 </page>
             </xpath>
         </field>

@@ -21,6 +21,7 @@ Manage product approval.
     'application': False,
     'data': [
         'wizards/swap_product_wizard.xml',
+        'views/product_view.xml',
         'views/sale_view.xml',
     ],
 

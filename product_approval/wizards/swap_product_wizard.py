@@ -12,7 +12,7 @@ class SwapProduct(models.TransientModel):
 
     sale_order_id = fields.Many2one('sale.order.line')
     product_id = fields.Many2one('product.product')
-    optional_product_ids = fields.Many2many('product.template', related='sale_order_id.product_id.optional_product_ids', readonly=True)
+    optional_product_ids = fields.Many2many('product.template', related='sale_order_id.product_id.alt_product_ids', readonly=True)
 
     @api.model
     def default_get(self, fields):
@@ -37,7 +37,7 @@ class SwapProduct(models.TransientModel):
         sale_order_line = self.env['sale.order.line'].browse(active_id)
         
         if sale_order_line:
-            for optional_product_id in sale_order_line.product_id.optional_product_ids:
+            for optional_product_id in sale_order_line.product_id.alt_product_ids:
                  optional_product_list.append(optional_product_id.id)   
                 
         if optional_product_list:
