@@ -5,9 +5,11 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//form[@name='Product Template']/sheet[1]/notebook[1]" position="inside">
+            <xpath expr="//page[@name='general_information']" position="inside">
                 <page name="alternative_products" string="Alternative Products">
-                    <field name="alt_product_ids" />
+                    <group name="group_alt">
+                        <field name="alt_product_ids" />
+                    </group>
                 </page>
             </xpath>
         </field>
