@@ -8,7 +8,7 @@
             <xpath expr="//page[@name='sales']" position="after">
                 <page name="alternative_products" string="Alternative Products">
                     <group name="group_alt">
-                        <field name="alt_product_ids" widget="many2many_tag" />
+                        <field name="alt_product_ids" widget="many2many_tags" domain="[('categ_id', 'ilike', 'parts')]" />
                     </group>
                 </page>
             </xpath>
