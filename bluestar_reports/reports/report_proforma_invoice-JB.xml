@@ -7,7 +7,7 @@
             <div class="col-8">
                 <address class="mb-2" t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}'/>
                 <address>
-                    <span>Attn:- </span><span t-field="doc.user_id.name"/>
+                    <span>Attn:- </span><span t-field="doc.partner_id.name"/>
                 </address>
             </div>
             <div class="col-4">
