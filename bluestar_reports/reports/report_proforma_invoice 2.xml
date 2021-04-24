@@ -38,7 +38,7 @@
                         <tr>
                             <th>Attn:</th>
                             <td>
-                                <span t-field="doc.user_id.name"/>
+                                <span t-field="doc.partner_id.name"/>
                             </td>
                         </tr>
                         <tr>

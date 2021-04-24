@@ -210,7 +210,14 @@
                                     <td class="border-2 border-dark"></td>
                                     <td colspan="3" class="border-bottom border-2 border-dark"><span>Recommendations</span></td>
                                     <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Labour</span></td>
-                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <t t-if="'Service Item' in total(o.id)">
+                                        <t t-set="labour_total" t-value="total(o.task_id.sale_line_id.id)['Service Item']"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="labour_total" t-value="0.00"/>
+                                    </t>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"><span t-esc="labour_total"
+                                          t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/></td>
                                 </tr>
 
                                 <!-- Footer -->
@@ -220,9 +227,16 @@
                                     <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
                                 </tr>
                                 <tr>
+                                    <t t-if="'Parts Item' in total(o.task_id.sale_line_id.id)">
+                                        <t t-set="parts_total" t-value="total(o.id)['Parts Item']"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="parts_total" t-value="0.00"/>
+                                    </t>
                                     <td colspan="8"></td>
                                     <td colspan="3" class="border-left-2 border-top border-bottom border-dark"><span>Spare - Parts</span></td>
-                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"></td>
+                                    <td colspan="2" class="border-left-2 border-top border-bottom border-dark"><span t-esc="parts_total"
+                                          t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/></td>
                                 </tr>
                                 <tr>
                                     <td colspan="8"></td>
