@@ -116,8 +116,8 @@ class ProductExport(models.Model):
         }
         return product
 
-    def convert_csv_to_excel(self):
-        for i in range(333, 465):
+    def convert_csv_to_excel(self, start, end):
+        for i in range(start, end):
             filename = os.path.dirname(os.path.realpath(__file__)) + "/excel/" + "Part" + str(i) + "-split-excel"
 
             if not os.path.isfile(filename + ".xlsx"):
