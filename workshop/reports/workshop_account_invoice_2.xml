@@ -19,7 +19,7 @@
                         </t>
                         <div class="row">
                             <div class="col-6">
-                                <address t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address']" t-options-no_marker="True" />
+                                <address t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'email', 'mobile']" t-options-no_marker="True" />
                                 <address>
                                     <span>VIN:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.vin_sn"/><br />
                                     <span>Milage:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.odometer"/><br />
