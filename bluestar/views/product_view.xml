@@ -10,6 +10,7 @@
             </xpath>
             <xpath expr="//field[@name='taxes_id']" position="after">
                 <field name="gross_price"/>
+                <field name="supplied_price"/>
                 <field name="sales_factor"/>
             </xpath>
         </field>
