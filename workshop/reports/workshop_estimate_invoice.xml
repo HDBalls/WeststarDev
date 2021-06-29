@@ -94,10 +94,10 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="border-bottom-2 border-right-2 border-dark table-cell">
-                                    <strong>Contact Name:</strong>
+                                    <strong>Email:</strong>
                                 </td>
                                 <td colspan="4" class="border-bottom-2 border-right-2 border-dark">
-                                    <span></span>
+                                    <span t-field="o.partner_id.email"/>
                                 </td>
                             </tr>
                             <tr>
