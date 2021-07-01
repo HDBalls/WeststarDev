@@ -277,7 +277,7 @@
                                                     />
                                                 </td>
                                             </tr>
-                                            <tr class="is-subtotal text-right" t-if="comp_prog == 0 and o.computer_programming != 0">
+                                 <!---           <tr class="is-subtotal text-right" t-if="comp_prog == 0 and o.computer_programming != 0">
                                                 <td colspan="7"></td>
                                                 <td colspan="2" class="border border-secondary">
                                                     <strong>Computer Programming</strong>
@@ -289,7 +289,7 @@
                                                         t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
                                                     />
                                                 </td>
-                                            </tr>
+                                            </tr>. --->
                                             <tr>
                                                 <td colspan="10" class="border-right-2 border-dark"></td>
                                             </tr>
