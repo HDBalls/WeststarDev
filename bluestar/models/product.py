@@ -48,6 +48,7 @@ class Product(models.Model):
     market_code = fields.Many2one('product.template.market.code', 'Market Code', tracking=True)
     gross_price = fields.Monetary('BLP', help='Gross Cost Price')
     supplied_price = fields.Monetary('SLP', help='Supplied Price')
+    netlist_price = fields.Monetary('NLP', help='Net List Price')
     # list_price: catalog price, user defined
 #     list_price = fields.Float(
 #         'Sales Price', default=1.0,
@@ -77,6 +78,6 @@ class Product(models.Model):
             product.write({'gross_price': product.standard_price})
             
     def _cal_update_gross_price_from_target_price(self):
-        products = self.env['product.template'].search([('type', '=', 'product')])
+        products = self.env['product.template'].search([('type', '=', 'product'), ('gross_price', '!=', product.x_studio_target_price)], limit=2000)
         for product in products:
             product.write({'gross_price': product.x_studio_target_price})
