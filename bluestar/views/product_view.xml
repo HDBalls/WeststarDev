@@ -13,6 +13,7 @@
                 <field name="supplied_price"/>
                 <field name="netlist_price"/>
                 <field name="sales_factor"/>
+                <field name="target_price1"/>
             </xpath>
         </field>
     </record>
