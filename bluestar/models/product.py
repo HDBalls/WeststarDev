@@ -78,6 +78,6 @@ class Product(models.Model):
             product.write({'gross_price': product.standard_price})
             
     def _cal_update_gross_price_from_target_price(self):
-        products = self.env['product.template'].search([('type', '=', 'product'), ('gross_price', '!=', x_studio_target_price)], limit=2000)
+        products = self.env['product.template'].search([('type', '=', 'product'), ('gross_price', '!=', 'x_studio_target_price')], limit=2000)
         for product in products:
             product.write({'gross_price': product.x_studio_target_price})
