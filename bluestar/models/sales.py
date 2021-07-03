@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
             if 'JULIUS BERGER' in name.upper():
                 template = Template.search([('name', 'ilike', 'Julius Berger')], limit = 1)
             else:
-                template = Template.search([('name', 'ilike', 'Weststar')], limit = 1)
+                template = Template.search([('name', 'ilike', 'Default')], limit = 1)
         
         if template != False:
             self.update({'sale_order_template_id': template.id})
