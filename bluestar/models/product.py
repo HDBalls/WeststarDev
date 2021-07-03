@@ -50,7 +50,7 @@ class Product(models.Model):
     supplied_price = fields.Monetary('SLP', help='Supplied Price')
     netlist_price = fields.Monetary('NLP', help='Net List Price')
    # target_price1 = fields.Monetary('Target Price', help='Target rice test 1')
-    target_price1 = fields.Monetary(string='Target Sales', store=True,  currency_field='company_currency_id',compute='_compute_netprice', help='Target Sales Price for Weststar')
+    target_price1 = fields.Monetary(string='Target Sales', store=True, compute='_compute_netprice', help='Target Sales Price for Weststar')
     # list_price: catalog price, user defined
 #     list_price = fields.Float(
 #         'Sales Price', default=1.0,
