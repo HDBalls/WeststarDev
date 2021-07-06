@@ -62,7 +62,7 @@ class Product(models.Model):
 	    rate_eur = self.env['res.currency'].search([('name', '=', 'EUR')], limit=1).rate
 	    for record in self:
   		    if record['netlist_price'] !=0:
-   			    record['target_price1'] = (record.netlist_price * record.sales_factor.factor) / rate_eur
+   			    record['target_price1'] = record.netlist_price / rate_eur
                 
     @api.onchange('sales_factor', 'market_code')
     def _cal_list_price(self):
