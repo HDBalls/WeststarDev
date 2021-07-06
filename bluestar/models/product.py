@@ -49,7 +49,7 @@ class Product(models.Model):
     gross_price = fields.Monetary('BLP', help='Gross Cost Price')
     supplied_price = fields.Monetary('SLP', help='Supplied Price')
     netlist_price = fields.Monetary('NLP', help='Net List Price')
-    target_price = fields.Monetary(string='Target Sales Price', store=True, compute='_compute_netprice', help='Target Sales Price for Weststar')
+   # target_price = fields.Monetary(string='Target Sales Price', store=True, compute='_compute_netprice', help='Target Sales Price for Weststar')
     # list_price: catalog price, user defined
 #     list_price = fields.Float(
 #         'Sales Price', default=1.0,
@@ -57,12 +57,12 @@ class Product(models.Model):
 #         help="Price at which the product is sold to customers.")
     l_price = fields.Float('Compute Sales Price', default=1.0, digits='Product Price')
 
-    @api.depends('netlist_price', 'target_price')
-    def _compute_netprice(self):
-	    rate_eur = self.env['res.currency'].search([('name', '=', 'EUR')], limit=1).rate
-	    for record in self:
-  		    if record['netlist_price'] !=0:
-   			    record['target_price'] = record.netlist_price / rate_eur
+#    @api.depends('netlist_price', 'target_price')
+#    def _compute_netprice(self):
+#	    rate_eur = self.env['res.currency'].search([('name', '=', 'EUR')], limit=1).rate
+#	    for record in self:
+#  		    if record['netlist_price'] !=0:
+#   			    record['target_price'] = record.netlist_price / rate_eur
                 
     @api.onchange('sales_factor', 'market_code')
     def _cal_list_price(self):
