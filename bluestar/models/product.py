@@ -50,7 +50,7 @@ class Product(models.Model):
     supplied_price = fields.Monetary('SLP', help='Supplied Price')
     netlist_price = fields.Monetary('NLP', help='Net List Price')
    # target_price1 = fields.Monetary('Target Price', help='Target rice test 1')
-    target_price1 = fields.Monetary(string='Target Sales', store=True, compute='_compute_netprice', help='Target Sales Price for Weststar')
+#    target_price1 = fields.Monetary(string='Target Sales', store=True, compute='_compute_netprice', help='Target Sales Price for Weststar')
     # list_price: catalog price, user defined
 #     list_price = fields.Float(
 #         'Sales Price', default=1.0,
@@ -58,27 +58,27 @@ class Product(models.Model):
 #         help="Price at which the product is sold to customers.")
     l_price = fields.Float('Compute Sales Price', default=1.0, digits='Product Price')
 
-    @api.depends('netlist_price', 'target_price1')
-    def _compute_netprice(self):
-	    rate_eur = self.env['res.currency'].search([('name', '=', 'EUR')], limit=1).rate
-	    for record in self:
-  		    if record['netlist_price'] !=0:
-   			    record['target_price1'] = record.netlist_price / rate_eur
+#    @api.depends('netlist_price', 'target_price1')
+#    def _compute_netprice(self):
+#	    rate_eur = self.env['res.currency'].search([('name', '=', 'EUR')], limit=1).rate
+#	    for record in self:
+#  		    if record['netlist_price'] !=0:
+#   			    record['target_price1'] = record.netlist_price / rate_eur
     
     @api.onchange('sales_factor', 'market_code')
     def _cal_list_price(self):
         for record in self:
-            record.list_price = record.target_price1 * record.sales_factor.factor
+            record.list_price = record.gross_price * record.sales_factor.factor
 
-#    @api.onchange('gross_price')
-#    def _gross_price_update(self):
-#        for record in self:
-#            record.list_price = record.gross_price * record.sales_factor.factor
+    @api.onchange('gross_price')
+    def _gross_price_update(self):
+        for record in self:
+            record.list_price = record.gross_price * record.sales_factor.factor
             
     def _cal_update_all_list_price(self):
         products = self.env['product.template'].search([('type', '=', 'product'), ('list_price', '<=', 1)], limit=2000)
         for product in products:
-            list_price = product.target_price1 * product.sales_factor.factor
+            list_price = product.gross_price * product.sales_factor.factor
             product.write({'list_price': list_price})
 
     def _cal_update_gross_price_from_standard_price(self):
