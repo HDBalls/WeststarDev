@@ -25,7 +25,7 @@
                                     <span>Engine Number:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.engine_no"/><br />
                                     <span>Reg No:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.license_plate"/><br />
                                     <span>Mileage:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.odometer"/><br />
-                                    <span>Model:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.model_id"/><br />
+                                    <span>Model:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.model_id.name"/><br />
                                     <span>Job Card No:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.name"/><br />
                                 </address>
                             </div>
