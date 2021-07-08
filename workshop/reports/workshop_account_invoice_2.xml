@@ -19,17 +19,20 @@
                         </t>
                         <div class="row">
                             <div class="col-6">
-                                <address t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address']" t-options-no_marker="True" />
+                                <address t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email', 'mobile']" t-options-no_marker="True" />
                                 <address>
                                     <span>VIN:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.vin_sn"/><br />
-                                    <span>Milage:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.odometer"/><br />
+                                    <span>Engine Number:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.engine_no"/><br />
+                                    <span>Reg No:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.license_plate"/><br />
+                                    <span>Mileage:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.odometer"/><br />
+                                    <span>Model:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.model_id"/><br />
                                     <span>Job Card No:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.name"/><br />
                                 </address>
                             </div>
                             <div class="col-6">
 <!--                                 <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/> -->
                                 <p>
-                                    <div t-field="company.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone']" t-options-no_marker="True" />
+                                    <div t-field="company.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'x_studio_work_email']" t-options-no_marker="True" />
                                     <div>Vat Reg No: </div>
                                     <address>
                                         <span>Invoice Number: </span><span t-field="o.name"/><br/>
@@ -167,7 +170,7 @@
                         <div class="row">
                             <div class="col">
                                 <p>Our Bank details are as follows:</p>		
-                                <p><strong>BANK NAME: Polaris Bank Plc</strong></p>			
+                                <p><strong>BANK NAME: </strong></p>			
                             </div>
                         </div>
                     </div>
