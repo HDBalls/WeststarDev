@@ -121,11 +121,17 @@
                                 <td class="border border-dark">
                                     <span t-field="o.task_id.service_id.date_in"/>
                                 </td>
-                                <td colspan="2" class="border border-dark table-cell">
+                                <td class="border border-bottom-2 border-dark table-cell">
                                     <strong>Engine No:</strong>
                                 </td>
-                                <td colspan="5" class="border-bottom border-right-2 border-dark">
+                                <td colspan="2" class="border border-bottom-2 border-dark">
                                     <span t-field="o.task_id.vehicle_id.engine_no"/>
+                                </td>
+                                <td colspan="2" class="border border-dark table-cell">
+                                    <strong>Reg No:</strong>
+                                </td>
+                                <td class="border border-bottom-2 border-right-2 border-dark">
+                                    <span t-field="o.task_id.vehicle_id.license_plate"/>
                                 </td>
                             </tr>
                             <tr>
