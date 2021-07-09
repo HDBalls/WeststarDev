@@ -108,7 +108,7 @@
                                     <span t-field="o.task_id.date_deadline" />
                                 </td>
                                 <td colspan="3" class="border border-dark table-cell">
-                                    <strong>Chassis No./Reg. no:</strong>
+                                    <strong>Chassis No.</strong>
                                 </td>
                                 <td colspan="4" class="border-bottom border-right-2 border-dark">
                                     <span t-field="o.task_id.vehicle_id.vin_sn"/>
@@ -121,11 +121,17 @@
                                 <td class="border border-dark">
                                     <span t-field="o.task_id.service_id.date_in"/>
                                 </td>
-                                <td colspan="2" class="border border-dark table-cell">
+                                <td colspan="2" class="border border-bottom-2 border-dark table-cell">
                                     <strong>Engine No:</strong>
                                 </td>
-                                <td colspan="5" class="border-bottom border-right-2 border-dark">
+                                <td class="border border-bottom-2 border-dark">
                                     <span t-field="o.task_id.vehicle_id.engine_no"/>
+                                </td>
+                                <td colspan="2" class="border border-dark table-cell">
+                                    <strong>Reg No:</strong>
+                                </td>
+                                <td colspan="5" class="border-bottom border-right-2 border-dark">
+                                    <span t-field="o.task_id.vehicle_id.license_plate"/>
                                 </td>
                             </tr>
                             <tr>
@@ -277,7 +283,7 @@
                                                     />
                                                 </td>
                                             </tr>
-                     <!---                       <tr class="is-subtotal text-right" t-if="comp_prog == 0 and o.computer_programming != 0">
+                     <!--                       <tr class="is-subtotal text-right" t-if="comp_prog == 0 and o.computer_programming != 0">
                                                 <td colspan="7"></td>
                                                 <td colspan="2" class="border border-secondary">
                                                     <strong>Computer Programming</strong>
@@ -289,7 +295,7 @@
                                                         t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
                                                     />
                                                 </td>
-                                            </tr>.  --->
+                                            </tr>  -->
                                             <tr>
                                                 <td colspan="10" class="border-right-2 border-dark"></td>
                                             </tr>
