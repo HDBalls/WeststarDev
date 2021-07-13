@@ -3,7 +3,7 @@
     <template id="workshop_estimate_invoice">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="workshop.workshop_estimate_invoice_header_inherit_cr">
+                <t t-call="workshop.workshop_estimate_invoice_header">
                     <div class="page">
                         <style>
                             
@@ -331,7 +331,7 @@
                                 <td><span>NO</span></td>
                                 <td></td>
                                 <td colspan="2" class="border border-left-2 border-dark">
-                                    <span><b>Labour</b></span>
+                                    <span class="text-right"><b>3rd Party & Labour</b></span>
                                 </td>
                                 <td class="border border-right-2 border-dark">
                                     <t t-if="'Service Item' in total(o.id)">
