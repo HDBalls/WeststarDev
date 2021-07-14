@@ -31,8 +31,8 @@ class Sale(models.AbstractModel):
     def _get_report_values(self, docids, data=None):
         docs = self.env['sale.order'].browse(docids)
         for doc in docs:
-            if doc.state = 'done':
-                raise exceptions.ValidationError('Please you cannot print the report on a locked Sales Order.')
+            if doc.state !='draft':
+                raise exceptions.ValidationError('Please report can only be generate at quotation stage.')
                        
         return {
             'doc_ids': docids,
