@@ -29,7 +29,11 @@ class Sale(models.AbstractModel):
     
     @api.model
     def _get_report_values(self, docids, data=None):
-            
+        docs = self.env['sale.order'].browse(docids)
+        for doc in docs:
+            if doc.state = 'done':
+                raise exceptions.ValidationError('Please you cannot print the report on a locked Sales Order.')
+                       
         return {
             'doc_ids': docids,
             'doc_model': 'sale.order',
