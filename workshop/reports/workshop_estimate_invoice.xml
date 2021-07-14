@@ -343,7 +343,7 @@
                                 <td><span>NO</span></td>
                                 <td></td>
                                 <td colspan="2" class="border border-left-2 border-dark">
-                                    <span class="text-right"><b>3rd Party & Labour</b></span>
+                                    <span class="text-right"><b>3rd Party/Labour</b></span>
                                 </td>
                                 <td class="border border-right-2 border-dark">
                                     <t t-if="'Service Item' in total(o.id)">
