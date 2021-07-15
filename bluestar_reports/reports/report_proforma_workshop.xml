@@ -35,8 +35,8 @@
                             
                                     <address>
                                         <span>Vat Reg No: </span>
-                                        <span>PFI NO: </span><span t-esc="sale_order(doc.invoice_origin).proforma_invoice_number"/><br />
-                                        <span>Ref: </span><span t-esc="sale_order(doc.invoice_origin).ref_number"/>
+                                        <span>PFI NO: </span><span t-esc="doc.proforma_invoice_number"/><br />
+                                        <span>Ref: </span><span t-esc="doc.ref_number"/>
                                     </address>
                                 </p>
                             </div>
