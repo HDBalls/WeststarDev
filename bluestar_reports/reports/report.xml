@@ -38,6 +38,6 @@
         <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" />
     </record>
      <record id="bluestar_reports.action_bluestar_report_proforma_workshop" model="ir.actions.report">
-        <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" />
+       <!-- <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" /> -->
     </record>
 </odoo>
