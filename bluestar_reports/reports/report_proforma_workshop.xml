@@ -4,7 +4,7 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
-                    <div class="page">
+           <!--         <div class="page"> -->
                         <t t-if="not company">
                             <!-- Multicompany -->
                             <t t-if="company_id">
@@ -18,7 +18,7 @@
                             </t>
                         </t>
                         <div class="row">
-                            <div class="col-10">
+                            <div class="col-6">
                                 <address t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email']" t-options-no_marker="True" />
                                 <address>
                                     <span>VIN:</span><span t-esc="doc.task_id.vehicle_id.vin_sn"/><br />
@@ -28,7 +28,7 @@
                                     <span>Mileage:</span><span t-esc="doc.task_id.service_id.odometer"/><br />
                                 </address>
                             </div>
-                            <div class="col-10">
+                            <div class="col-6">
 <!--                                 <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/> -->
                                 <p>
                                <!--     <div t-field="company.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'x_studio_work_email']" t-options-no_marker="True" /> -->
@@ -70,7 +70,7 @@
                             </t>
                         </t>
                     </t> -->
-                   <!-- <div class="page"> -->
+                    <div class="page"> 
                         <div class="oe_structure"/>
 
                         <h2 class="mt16">
