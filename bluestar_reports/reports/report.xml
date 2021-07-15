@@ -18,7 +18,7 @@
         name="bluestar_reports.report_proforma_invoice_for_workshop"
         file="bluestar_reports.report_proforma_invoice_for_workshop"
         attachment_use="True"
-        attachment="'PRO-FORMA - %s' % (object.name)"
+        attachment="'Proforma - %s' % (object.name)"
     />
     <record id="paperformat_lowmargin" model="report.paperformat">
         <field name="name">Bluestar Paper A4 Format</field>
