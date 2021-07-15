@@ -10,8 +10,8 @@
                             <t t-if="company_id">
                                 <t t-set="company" t-value="company_id"/>
                             </t>
-                            <t t-elif="o and 'company_id' in o">
-                                <t t-set="company" t-value="o.company_id.sudo()"/>
+                            <t t-elif="doc and 'company_id' in doc">
+                                <t t-set="company" t-value="doc.company_id.sudo()"/>
                             </t>
                             <t t-else="else">
                                 <t t-set="company" t-value="res_company"/>
@@ -19,13 +19,13 @@
                         </t>
                         <div class="row">
                             <div class="col-6">
-                                <address t-field="o.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email']" t-options-no_marker="True" />
+                                <address t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email']" t-options-no_marker="True" />
                                 <address>
-                                    <span>VIN:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.vin_sn"/><br />
-                                    <span>Engine Number:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.engine_no"/><br />
-                                    <span>Reg No:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.license_plate"/><br />
-                                    <span>Model:</span><span t-esc="sale_order(o.invoice_origin).task_id.vehicle_id.model_id.name"/><br />
-                                    <span>Mileage:</span><span t-esc="sale_order(o.invoice_origin).task_id.service_id.odometer"/><br />
+                                    <span>VIN:</span><span t-esc="doc.task_id.vehicle_id.vin_sn"/><br />
+                                    <span>Engine Number:</span><span t-esc="doc.task_id.vehicle_id.engine_no"/><br />
+                                    <span>Reg No:</span><span t-esc="doc.task_id.vehicle_id.license_plate"/><br />
+                                    <span>Model:</span><span t-esc="doc.task_id.vehicle_id.model_id.name"/><br />
+                                    <span>Mileage:</span><span t-esc="doc.task_id.service_id.odometer"/><br />
                                 </address>
                             </div>
                             <div class="col-6">
@@ -35,8 +35,8 @@
                             
                                     <address>
                                         <span>Vat Reg No: </span>
-                                        <span>PFI NO: </span><span t-esc="sale_order(o.invoice_origin).proforma_invoice_number"/><br />
-                                        <span>Ref: </span><span t-esc="sale_order(o.invoice_origin).ref_number"/>
+                                        <span>PFI NO: </span><span t-esc="sale_order(doc.invoice_origin).proforma_invoice_number"/><br />
+                                        <span>Ref: </span><span t-esc="sale_order(doc.invoice_origin).ref_number"/>
                                     </address>
                                 </p>
                             </div>
@@ -76,7 +76,7 @@
                         <h2 class="mt16">
                             <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                                 <span t-if="doc.state not in ['draft','sent']">Order # </span>
-                                <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                                <span t-if="doc.state in ['draft','sent']">Proforma # </span>
                             </t>
                             <t t-if="env.context.get('proforma', False) or is_pro_forma">
                                 <span>Pro-Forma Invoice # </span>
