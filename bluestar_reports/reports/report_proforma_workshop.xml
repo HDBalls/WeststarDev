@@ -3,11 +3,11 @@
     <template id="report_proforma_invoice_for_workshop">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-           <!--         <div class="page"> -->
-                        <t t-if="not company">
+                <t t-call="bluestar_reports.report_header">
+           <!--         <div class="page"> 
+                        <t t-if="not company"> -->
                             <!-- Multicompany -->
-                            <t t-if="company_id">
+                     <!--       <t t-if="company_id">
                                 <t t-set="company" t-value="company_id"/>
                             </t>
                             <t t-elif="doc and 'company_id' in doc">
@@ -26,7 +26,7 @@
                             <div class="col-6">
                                 
                             </div>
-                        </div>
+                        </div>. -->
                         <div class="row">
                             <div class="col-6">
                                 <address t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email']" t-options-no_marker="True" />
