@@ -21,7 +21,7 @@
                             <div class="col-6">
                                 
                             </div>
-                        </div> -->
+                        </div> 
                         <div class ="row"> 
                             <div class="col-6">
                                  <address>
@@ -32,7 +32,7 @@
                                     <span>Mileage:</span><span t-esc="doc.task_id.service_id.odometer"/><br />
                                 </address>  
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-6">
                                 <address t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email']" t-options-no_marker="True" />
@@ -89,7 +89,7 @@
                     <div class="page"> 
                         <div class="oe_structure"/>
 
-                        <h2 class="mt16">
+                <!--        <h6 class="mt16">
                             <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                                 <span t-if="doc.state not in ['draft','sent']">Order # </span>
                                 <span t-if="doc.state in ['draft','sent']">Proforma # </span>
@@ -98,7 +98,7 @@
                                 <span>Pro-Forma Invoice # </span>
                             </t>
                             <span t-field="doc.name"/>
-                        </h2>
+                        </h6>. -->
 
                         <div class="row mt32 mb32" id="informations">
                             <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
