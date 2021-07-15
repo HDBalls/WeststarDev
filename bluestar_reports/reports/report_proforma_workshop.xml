@@ -21,12 +21,18 @@
                             <div class="col-6">
                                 
                             </div>
-                        </div>
+                        </div> -->
                         <div class ="row"> 
                             <div class="col-6">
-                                
+                                 <address>
+                                    <span>VIN:</span><span t-esc="doc.task_id.vehicle_id.vin_sn"/><br />
+                                    <span>Engine Number:</span><span t-esc="doc.task_id.vehicle_id.engine_no"/><br />
+                                    <span>Reg No:</span><span t-esc="doc.task_id.vehicle_id.license_plate"/><br />
+                                    <span>Model:</span><span t-esc="doc.task_id.vehicle_id.model_id.name"/><br />
+                                    <span>Mileage:</span><span t-esc="doc.task_id.service_id.odometer"/><br />
+                                </address>  
                             </div>
-                        </div>. -->
+                        </div>
                         <div class="row">
                             <div class="col-6">
                                 <address t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'email']" t-options-no_marker="True" />
