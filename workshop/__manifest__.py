@@ -41,7 +41,7 @@
         'reports/workshop_account_invoice_3.xml',
         'reports/workshop_account_invoice.xml',
         'reports/workshop_workorder_invoice.xml',
-        'workshop_estimate_invoice_header_inherit_cr.xml',
+        'reports/workshop_estimate_invoice_header_inherit_cr.xml',
         'reports/report.xml'
     ],
     # only loaded in demonstration mode
