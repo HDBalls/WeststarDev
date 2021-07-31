@@ -18,7 +18,7 @@
                             </t>
                         </t>
       
-                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+    <!--                 <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
     <!--                <t t-set="address">
                         <div t-field="doc.partner_id"
                             t-options='{"widget": "contact", "fields": ["name"], "no_marker": True}' />
