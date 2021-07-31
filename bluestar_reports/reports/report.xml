@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <report
+        id="action_bluestar_report_quotation_workshop"
+        model="sale.order"
+        string="Quotation / Workshop"
+        report_type="qweb-pdf"
+        name="bluestar_reports.report_quotation_invoice_for_workshop"
+        file="bluestar_reports.report_quotation_invoice_for_workshop"
+        attachment_use="False"
+        attachment="'quotation - %s' % (object.name)"
+    />
+    <report
         id="action_bluestar_report_saleorder_reports"
         model="sale.order"
         string="Proforma Invoice / After Sales"
@@ -38,6 +48,9 @@
         <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" />
     </record>
      <record id="bluestar_reports.action_bluestar_report_proforma_workshop" model="ir.actions.report">
+       <!-- <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" /> -->
+    </record>
+     <record id="bluestar_reports.action_bluestar_report_quotation_workshop" model="ir.actions.report">
        <!-- <field name="paperformat_id" ref="bluestar_reports.paperformat_lowmargin" /> -->
     </record>
 </odoo>
