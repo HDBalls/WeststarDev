@@ -296,7 +296,7 @@
                                                     />
                                                 </td>
                                             </tr>
-                     <!--                       <tr class="is-subtotal text-right" t-if="comp_prog == 0 and o.computer_programming != 0">
+                                            <tr class="is-subtotal text-right" t-if="comp_prog == 0 and o.computer_programming != 0">
                                                 <td colspan="7"></td>
                                                 <td colspan="2" class="border border-secondary">
                                                     <strong>Computer Programming</strong>
@@ -308,7 +308,7 @@
                                                         t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'
                                                     />
                                                 </td>
-                                            </tr>  -->
+                                            </tr> 
                                             <tr>
                                                 <td colspan="10" class="border-right-2 border-dark"></td>
                                             </tr>
@@ -442,7 +442,7 @@
                                     <span>Supplies/Sundries</span>
                                 </td>
                                 <td class="border border-right-2 border-dark">
-                                    <t t-set="mis" t-value="(labour_total + parts_total + lubricant_total) * 0.02"/>
+                                    <t t-set="mis" t-value="(labour_total + o.computer_programming + parts_total + lubricant_total) * 0.02"/>
                                     <span t-esc="mis" 
                                           t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>
                                     <t t-set="saving" t-value="save(o.id, mis)"/>
