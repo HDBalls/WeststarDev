@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
         for sale_order in self:
       #      if not sale_order.amount_total <= sale_order.approver_id.sale_order_amount_limit:
        #         raise UserError(_('Your approval limit is lesser then sale order total amount. Click on "Ask for Approval" for Higher value.'))
-            if not sale_order.approver_id == self.env.user: 
+       #     if not sale_order.approver_id == self.env.user: 
         #        raise UserError(_('You can not confirm this sale order. Kindly check the approver and try again.'))
         return super(SaleOrder, self).action_confirm()
     
