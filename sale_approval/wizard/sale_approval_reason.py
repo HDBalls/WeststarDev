@@ -7,7 +7,7 @@ class SaleApprovalReason(models.TransientModel):
     _name = 'sale.approval.reason'
 
     approval_for = fields.Selection([
-        ('for_amount', 'Request For Amount'),
+    #    ('for_amount', 'Request For Amount'),
         ('for_discount', 'Request For Discount'),
     ], 'Approve Type', copy=False, required=True, select=True)
     requested_discount = fields.Float('Requested Discount')
@@ -17,21 +17,21 @@ class SaleApprovalReason(models.TransientModel):
     def approve(self):
         sale_br_obj = self.env['sale.order'].browse(self._context.get('active_ids'))[0]
         user_obj = self.env['res.users']
-        if self.approval_for == 'for_amount':
+#        if self.approval_for == 'for_amount':
             # sales order limit is less than amount
             # 500000 >=! 7300
-            if not sale_br_obj.amount_total >= sale_br_obj.approver_id.sale_order_amount_limit:
-                user_search = user_obj.search([('sale_order_amount_limit', '>=', sale_br_obj.amount_total),
-                                               ('sale_order_can_approve', '=', 'yes')], order='sale_order_amount_limit')
-                if user_search:
-                    next_larg_amount_user_id = user_search[0]
-                else:
-                    raise UserError('Approver is not set for this Amount Limit. Please allocate approver')
-                sale_br_obj.write({'state': 'waiting_for_approval'})
+ #           if not sale_br_obj.amount_total >= sale_br_obj.approver_id.sale_order_amount_limit:
+  #              user_search = user_obj.search([('sale_order_amount_limit', '>=', sale_br_obj.amount_total),
+   #                                            ('sale_order_can_approve', '=', 'yes')], order='sale_order_amount_limit')
+    #            if user_search:
+     #               next_larg_amount_user_id = user_search[0]
+      #          else:
+      #              raise UserError('Approver is not set for this Amount Limit. Please allocate approver')
+      #          sale_br_obj.write({'state': 'waiting_for_approval'})
 #                 sale_br_obj.write({'approver_id': next_larg_amount_user_id.id, 'state': 'waiting_for_approval'})
-            else:
-                raise UserError(
-                    'The total amount cannot be approved. Kindly select a different approver or reduce amount specified.')
+      #      else:
+      #          raise UserError(
+      #              'The total amount cannot be approved. Kindly select a different approver or reduce amount specified.')
         if self.approval_for == 'for_discount':
             if self.requested_discount:
                 user_search_discount = user_obj.search([('sale_order_discount_limit', '>=', self.requested_discount)],
