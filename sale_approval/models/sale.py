@@ -16,8 +16,8 @@ class SaleOrder(models.Model):
         ('cancel', 'Cancelled'),
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
     approver_id = fields.Many2one('res.users', 'Sale Order Approver', readonly=False, copy=False, required=False, track_visibility='onchange',
-        domain="['&',['sale_order_can_approve', '=', 'yes']]")
-   #     domain="['&',['sale_order_can_approve', '=', 'yes'],['sale_order_amount_limit', '>', amount_total]]")
+   #     domain="['&',['sale_order_can_approve', '=', 'yes']]")
+        domain="['&',['sale_order_can_approve', '=', 'yes'],['sale_order_amount_limit', '>', amount_total]]")
     discount_notes = fields.Float('Discount Note')
     next_discount_amount = fields.Float('Next Discount Amount')
     
@@ -28,8 +28,8 @@ class SaleOrder(models.Model):
                 #raise UserError(_('Your approval limit is lesser then sale order total amount. Click on "Ask for Approval" for Higher value.'))
             #if not sale_order.approver_id == self.env.user: 
                 #raise UserError(_('You can not confirm this sale order. Kindly check the approver and try again.'))
-        #return super(SaleOrder, self).action_confirm()
-        return True
+        return super(SaleOrder, self).action_confirm()
+        #return True
     
 #     @api.multi
     def get_discount(self):
