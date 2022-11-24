@@ -19,12 +19,12 @@ class WorkshopVehicleCost(models.Model):
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True, help='Vehicle concerned by this log')
     cost_subtype_id = fields.Many2one('workshop.service.type', 'Type', help='Cost type purchased with this cost')
     amount = fields.Monetary('Total Price')
-    cost_type = fields.Selection([
+    cost_type = fields.Selection(selection_add=[
         ('contract', 'Contract'),
         ('services', 'Services'),
         ('fuel', 'Fuel'),
         ('other', 'Other')
-        ], 'Category of the cost', default="other", help='For internal purpose only', required=True)
+        ], 'Category of the cost', default="other", help='For internal purpose only', required=True, ondelete={'contract': 'set default', 'services':'set default', 'fuel':'set default', 'other':'set default'})
 
     operation_type = fields.Selection([
         ('action_taken', 'Action Taken'),

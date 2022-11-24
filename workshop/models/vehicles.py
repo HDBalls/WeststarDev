@@ -216,7 +216,7 @@ class VehicleServiceType(models.Model):
     _description = 'Workshop Service Type'
 
     name = fields.Char(required=True, translate=True)
-    category = fields.Selection([
+    category = fields.Selection(selection_add=[
         ('contract', 'Contract'),
         ('service', 'Service')
-        ], 'Category', required=True, help='Choose whether the service refer to contracts, vehicle services or both')
+        ], 'Category', required=True, default='contract', ondelete={'contract': 'set default', 'service':'set default'}, help='Choose whether the service refer to contracts, vehicle services or both')

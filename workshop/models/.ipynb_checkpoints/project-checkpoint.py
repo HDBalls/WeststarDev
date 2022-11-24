@@ -143,9 +143,9 @@ class ProjectTaskWorkOrderParts(models.Model):
 
     order_id = fields.Many2one('project.task', string='Order Reference')
     sequence = fields.Integer(string='Sequence', default=10)
-    display_type = fields.Selection([
+    display_type = fields.Selection(selection_add=[
         ('line_section', "Section"),
-        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+        ('line_note', "Note")], default=False, ondelete={'line_section': 'set default', 'line_note': 'set default'}, help="Technical field for UX purpose.")
     product_id = fields.Many2one('product.product', 'Product', required=True)
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Quantity')
@@ -191,9 +191,9 @@ class ProjectTaskWorkOrderExpenses(models.Model):
 
     order_id = fields.Many2one('project.task', string='Order Reference')
     sequence = fields.Integer(string='Sequence', default=10)
-    display_type = fields.Selection([
+    display_type = fields.Selection(selection_add=[
         ('line_section', "Section"),
-        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+        ('line_note', "Note")], default=False, ondelete={'line_section': 'set default', 'line_note': 'set default'}, help="Technical field for UX purpose.")
     product_id = fields.Many2one('product.product', 'Product', required=True, domain=[('type','=','service'), ('categ_id','ilike','expenses')])
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Quantity')
@@ -239,9 +239,9 @@ class ProjectTaskWorkOrderLubricant(models.Model):
 
     order_id = fields.Many2one('project.task', string='Order Reference')
     sequence = fields.Integer(string='Sequence', default=10)
-    display_type = fields.Selection([
+    display_type = fields.Selection(selection_add=[
         ('line_section', "Section"),
-        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+        ('line_note', "Note")], default=False, ondelete={'line_section': 'set default', 'line_note': 'set default'}, help="Technical field for UX purpose.")
     product_id = fields.Many2one('product.product', 'Product', required=True, domain=[('type','=','product'), ('categ_id','ilike','workshop')])
     name = fields.Char(related='product_id.name', string='Description')
     quantity = fields.Integer('Liters')

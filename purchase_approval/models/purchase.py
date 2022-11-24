@@ -5,7 +5,7 @@ from odoo import models, fields, api
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
-    state = fields.Selection([
+    state = fields.Selection(selection_add=[
         ('draft', 'RFQ'),
         ('sent', 'RFQ Sent'),
         ('to approve', 'To Approve'),
@@ -13,7 +13,7 @@ class PurchaseOrder(models.Model):
         ('purchase', 'Purchase Order'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled')
-    ], string='Status', readonly=True, index=True, copy=False, default='draft', tracking=True)
+    ], string='Status', readonly=True, index=True, copy=False, default='draft', tracking=True, ondelete={'draft': 'set default', 'sent':'set default', 'to approve':'set default', 'confirmation':'set default', 'purchase':'set default', 'done':'set default', 'cancel':'set default'})
 
     # def button_approve(self, force=False):
     #     self.write({'approver_id': '', 'state': 'confirmation', 'date_approve': fields.Date.context_today(self)})

@@ -19,18 +19,18 @@ class WorkshopVehicleCost(models.Model):
     vehicle_id = fields.Many2one('workshop.vehicle', 'Vehicle', required=True, help='Vehicle concerned by this log')
     cost_subtype_id = fields.Many2one('workshop.service.type', 'Type', help='Cost type purchased with this cost')
     amount = fields.Monetary('Total Price')
-    cost_type = fields.Selection([
+    cost_type = fields.Selection(selection_add=[
         ('contract', 'Contract'),
         ('services', 'Services'),
         ('fuel', 'Fuel'),
         ('other', 'Other')
-        ], 'Category of the cost', default="other", help='For internal purpose only', required=True)
+        ], 'Category of the cost', default="other", help='For internal purpose only', required=True, ondelete={'contract': 'set default','services': 'set default', 'fuel':'set default', 'other': 'set default'})
 
-    operation_type = fields.Selection([
+    operation_type = fields.Selection(selection_add=[
         ('action_taken', 'Action Taken'),
         ('complaint', 'Customers Complaint'),
         ('diagnosis', 'Diagnostic Finding')
-    ])
+    ], default="action_taken", ondelete={'action_taken': 'set default','complaint': 'set default', 'diagnosis':'set default'})
     parent_id = fields.Many2one('workshop.vehicle.cost', 'Parent', help='Parent cost to this current cost')
     cost_ids = fields.One2many('workshop.vehicle.cost', 'parent_id', 'Included Services', copy=True)
     odometer_id = fields.Many2one('workshop.vehicle.odometer', 'Odometer', help='Odometer measure of the vehicle at the moment of this log')
@@ -111,22 +111,22 @@ class WorkshopVehicleLogServices(models.Model):
     brought_in_by = fields.Many2one('res.partner')
     date_deadline = fields.Date(string='Deadline', readonly=True)
 
-    state = fields.Selection([
+    state = fields.Selection(selection_add=[
         ('pending', 'Pending'),
         ('awaiting_confirmation', 'Awaiting Confirmation'),
         ('awaiting_parts', 'Awaiting Parts'),
         ('in_progress', 'Repair In Progress'),
         ('awaiting_payment', 'Awaiting Payment'),
         ('done', 'Complete'),
-    ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='pending')
-    fuel_log = fields.Selection([
+    ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='pending', ondelete={'pending': 'set default','awaiting_confirmation': 'set default', 'awaiting_parts':'set default', 'in_progress': 'set default', 'awaiting_payment':'set default', 'done': 'set default'})
+    fuel_log = fields.Selection(selection_add=[
         ('empty', 'Empty'),
         ('one_half', 'One Half'),
         ('one_quarter', 'One Quarter'),
         ('three_quarter', 'Three Quarter'),
         ('half', 'Half Full'),
         ('full', 'Full')
-    ], string='Fuel')
+    ], string='Fuel', ondelete={'empty': 'set default','one_half': 'set default', 'one_quarter':'set default', 'three_quarter': 'set default', 'half':'set default', 'full': 'set default'})
     # vendor_id = fields.Many2one('res.partner', 'Vendor')
     # we need to keep this field as a related with store=True because the graph view doesn't support
     # (1) to address fields from inherited table and (2) fields that aren't stored in database

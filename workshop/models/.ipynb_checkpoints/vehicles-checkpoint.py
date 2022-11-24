@@ -55,18 +55,18 @@ class Vehicle(models.Model):
     tag_ids = fields.Many2many('workshop.vehicle.tag', 'workshop_vehicle_vehicle_tag_rel', 'vehicle_tag_id', 'tag_id', 'Tags', copy=False)
     odometer = fields.Float(compute='_get_odometer', inverse='_set_odometer', string='Last Odometer',
         help='Odometer measure of the vehicle at the moment of this log')
-    odometer_unit = fields.Selection([
+    odometer_unit = fields.Selection(selection_add=[
         ('kilometers', 'Kilometers'),
         ('miles', 'Miles')
-        ], 'Odometer Unit', default='kilometers', help='Unit of the odometer ', required=True)
-    transmission = fields.Selection([('manual', 'Manual'), ('automatic', 'Automatic')], 'Transmission', help='Transmission Used by the vehicle')
-    fuel_type = fields.Selection([
+        ], 'Odometer Unit', default='kilometers', help='Unit of the odometer ', required=True, ondelete={'kilometers': 'set default', 'miles':'set default'})
+    transmission = fields.Selection(selection_add=[('manual', 'Manual'), ('automatic', 'Automatic')], 'Transmission', default='manual', help='Transmission Used by the vehicle', ondelete={'kilometers': 'set default', 'miles':'set default'})
+    fuel_type = fields.Selection(selection_add=[
         ('gasoline', 'Gasoline'),
         ('diesel', 'Diesel'),
         ('lpg', 'LPG'),
         ('electric', 'Electric'),
         ('hybrid', 'Hybrid')
-        ], 'Fuel Type', help='Fuel Used by the vehicle')
+        ], 'Fuel Type', default='gasoline', help='Fuel Used by the vehicle', ondelete={'gasoline': 'set default', 'diesel':'set default', 'lpg': 'set default', 'electric':'set default', 'hybrid':'set default'})
     horsepower = fields.Integer()
     horsepower_tax = fields.Float('Horsepower Taxation')
     power = fields.Integer('Power', help='Power in kW of the vehicle')
@@ -215,7 +215,7 @@ class VehicleServiceType(models.Model):
     _description = 'Workshop Service Type'
 
     name = fields.Char(required=True, translate=True)
-    category = fields.Selection([
+    category = fields.Selection(selection_add=[
         ('contract', 'Contract'),
         ('service', 'Service')
-        ], 'Category', required=True, help='Choose whether the service refer to contracts, vehicle services or both')
+        ], 'Category', required=True, default='contract', ondelete={'contract': 'set default', 'service':'set default'}, help='Choose whether the service refer to contracts, vehicle services or both')
