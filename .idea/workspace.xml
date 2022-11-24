@@ -23,18 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1045c5db-f018-4fda-92e8-c1ae5e8c2488" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/WeststarDev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WeststarDev.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_bluestar/models/product_packaging.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_bluestar/models/product_packaging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/purchase_approval/models/purchase.py" beforeDir="false" afterPath="$PROJECT_DIR$/purchase_approval/models/purchase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sale_approval/models/res_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/sale_approval/models/res_users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sale_approval/models/sale.py" beforeDir="false" afterPath="$PROJECT_DIR$/sale_approval/models/sale.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/models/.ipynb_checkpoints/project-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/.ipynb_checkpoints/project-checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/models/.ipynb_checkpoints/vehicle_services-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/.ipynb_checkpoints/vehicle_services-checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/models/.ipynb_checkpoints/vehicles-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/.ipynb_checkpoints/vehicles-checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/models/vehicle_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/vehicle_services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workshop/models/vehicles.py" beforeDir="false" afterPath="$PROJECT_DIR$/workshop/models/vehicles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluestar/models/pricelist.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluestar/models/pricelist.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
